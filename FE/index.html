@@ -135,20 +135,20 @@
         const map = new Map({
           basemap: 'topo-vector',
           // ground: "world-elevation",
-
+          //  center : 
           layers: [layout1, layout2, stand1], //end layers
         });
 
         const view = new SceneView({
           container: 'viewDiv',
           map: map,
-          center: [12.4900422, 41.8902102],
+          center: [12.4922309, 41.8902102],
           camera: {
-            position: [12.4900422, 41.8902102, 200],
+            position: [12.4922309, 41.8902102, 90],
             heading: 120,
             tilt: 60,
           },
-          zoom: 19,
+          zoom: 100,
         });
 
         view.popup.defaultPopupTemplateEnabled = true;
