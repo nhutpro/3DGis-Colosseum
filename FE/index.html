@@ -58,7 +58,7 @@
         GraphicsLayer,
         Graphic,
         esriRequest,
-        Circle,
+        Circle
       ) {
         var createGraphic = function (data) {
           return new Graphic({
@@ -76,6 +76,10 @@
         });
         const layout2 = new GeoJSONLayer({
           url: './layout2.geojson',
+        });
+
+        const stand1 = new GeoJSONLayer({
+          url: './stand1.geojson',
         });
 
         layout1.renderer = {
@@ -108,12 +112,31 @@
             ],
           },
         };
+        stand1.renderer = {
+          type: 'simple',
+
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 5,
+                height: 5,
+                profile: 'quad',
+                material: {
+                  color: '#0ce861',
+                },
+              },
+            ],
+          },
+        };
 
         const map = new Map({
           basemap: 'topo-vector',
           // ground: "world-elevation",
 
-          layers: [layout1, layout2], //end layers
+          layers: [layout1, layout2, stand1], //end layers
         });
 
         const view = new SceneView({
