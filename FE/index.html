@@ -82,6 +82,13 @@
           url: './stand1.geojson',
         });
 
+        const floor3 = new GeoJSONLayer({
+          url: './floor3.geojson',
+        });
+        const pillar_floor_3 = new GeoJSONLayer({
+          url: './pillar_floor_3.geojson',
+        });
+
         layout1.renderer = {
           type: 'simple',
           symbol: {
@@ -114,7 +121,6 @@
         };
         stand1.renderer = {
           type: 'simple',
-
           color: '#8e773e',
           symbol: {
             type: 'line-3d',
@@ -132,11 +138,30 @@
           },
         };
 
+        floor3.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 10,
+                height: 1,
+                profile: 'quad',
+                material: {
+                  color: '#8e773e',
+                },
+              },
+            ],
+          },
+        };
+
         const map = new Map({
           basemap: 'topo-vector',
           // ground: "world-elevation",
-          //  center : 
-          layers: [layout1, layout2, stand1], //end layers
+          //  center :
+          layers: [layout1, layout2, stand1, floor3], //end layers
         });
 
         const view = new SceneView({
