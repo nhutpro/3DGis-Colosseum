@@ -86,7 +86,7 @@
           url: './floor3.geojson',
         });
         const pillar_floor_3 = new GeoJSONLayer({
-          url: './pillar_floor_3.geojson',
+          url: './pillar_fl3.geojson',
         });
 
         layout1.renderer = {
@@ -157,11 +157,27 @@
           },
         };
 
+        pillar_floor_3.renderer = {
+          type: 'simple',
+          symbol: {
+            type: 'polygon-3d',
+            symbolLayers: [
+              {
+                type: 'extrude',
+                size: 40,
+                material: {
+                  color: '#ff0000',
+                },
+              },
+            ],
+          },
+        };
+
         const map = new Map({
           basemap: 'topo-vector',
           // ground: "world-elevation",
           //  center :
-          layers: [layout1, layout2, stand1, floor3], //end layers
+          layers: [layout1, layout2, stand1, floor3, pillar_floor_3], //end layers
         });
 
         const view = new SceneView({
