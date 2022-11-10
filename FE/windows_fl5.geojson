@@ -1,0 +1,906 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492215104672853,41.89088383384868,68.5],[ 12.492199314157267,41.89088352603671,68.5],[ 12.492183533263342,41.89088301312094,68.5]
+            ]},
+            "id": "windows0"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492152019564726,41.890881372665454,68.5],[ 12.492136296359716,41.89088024562543,68.5],[ 12.492120601972799,41.89087891448089,68.5]
+            ]},
+            "id": "windows1"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492089318766245,41.890875641562275,68.5],[ 12.492073739476071,41.89087370078519,68.5],[ 12.492058208060005,41.89087155789729,68.5]
+            ]},
+            "id": "windows2"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492027307758828,41.8908666684614,68.5],[ 12.492011948286523,41.890863923402826,68.5],[ 12.491996655511077,41.8908609792118,68.5]
+            ]},
+            "id": "windows3"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491966288662871,41.8908544970802,68.5],[ 12.491951223840406,41.8908509611142,68.5],[ 12.491936244212573,41.890847229964315,68.5]
+            ]},
+            "id": "windows4"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491906558765699,41.89083918671825,68.5],[ 12.491891861989368,41.89083487707221,68.5],[ 12.491877268490326,41.89083037714178,68.5]
+            ]},
+            "id": "windows5"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.49184840907302,41.89082081196832,68.5],[ 12.491834151945813,41.89081574963902,68.5],[ 12.491820015675348,41.8908105028519,68.5]
+            ]},
+            "id": "windows6"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.49179212289104,41.89079946235294,68.5],[ 12.491778374873784,41.890793672004236,68.5],[ 12.491764764703841,41.89078770392297,68.5]
+            ]},
+            "id": "windows7"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491737974446094,41.89077524188821,68.5],[ 12.491724802518995,41.89076875173088,68.5],[ 12.491711784758134,41.890762091432144,68.5]
+            ]},
+            "id": "windows8"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.49168622754852,41.890748268577,68.5],[ 12.491673695884836,41.89074111023129,68.5],[ 12.491661333955154,41.890733790164234,68.5]
+            ]},
+            "id": "windows9"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.49163713430733,41.89071867383397,68.5],[ 12.491625303960692,41.890710882175476,68.5],[ 12.491613658088811,41.890702938003614,68.5]
+            ]},
+            "id": "windows10"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491590933901875,41.890686601845275,68.5],[ 12.491579862508841,41.89067821483507,68.5],[ 12.49156898943249,41.890669685262516,68.5]
+            ]},
+            "id": "windows11"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491547851416568,41.89065220886603,68.5],[ 12.491537592915808,41.89064326736568,68.5],[ 12.491527545607397,41.890634193948564,68.5]
+            ]},
+            "id": "windows12"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491508096744266,41.890615662458956,68.5],[ 12.491498701113782,41.89060621003147,68.5],[ 12.491489528522324,41.890596636975445,68.5]
+            ]},
+            "id": "windows13"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491471863563715,41.89057714067805,68.5],[ 12.491463376577371,41.89056722337554,68.5],[ 12.491455123390013,41.89055719732043,68.5]
+            ]},
+            "id": "windows14"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491439328396009,41.890536831200926,68.5],[ 12.491431791400515,41.89052649734034,68.5],[ 12.491424497824859,41.89051606713288,68.5]
+            ]},
+            "id": "windows15"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491410649744648,41.890494930414505,68.5],[ 12.491404099458169,41.89048423034211,68.5],[ 12.491397801026384,41.890473446797984,68.5]
+            ]},
+            "id": "windows16"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491385967323431,41.890451642458125,68.5],[ 12.491380435656708,41.89044062830431,68.5],[ 12.491375163052464,41.89042954396049,68.5]
+            ]},
+            "id": "windows17"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491365401375882,41.890407178228976,68.5],[ 12.491360915276804,41.890395903654166,68.5],[ 12.491356694185807,41.89038457251306,68.5]
+            ]},
+            "id": "windows18"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491349052089575,41.89036175435454,68.5],[ 12.491345633411925,41.89035027428781,68.5],[ 12.491342484396826,41.89033875155405,68.5]
+            ]},
+            "id": "windows19"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.49133699910817,41.89031559213715,68.5],[ 12.491334664505201,41.89030396250864,68.5],[ 12.491332602905446,41.890292304320184,68.5]
+            ]},
+            "id": "windows20"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491329301143578,41.890268916475875,68.5],[ 12.491328061986914,41.890257193944215,68.5],[ 12.491327097844064,41.890245457098814,68.5]
+            ]},
+            "id": "windows21"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491325995690078,41.8902219547707,68.5],[ 12.491325858014365,41.890210196447036,68.5],[ 12.49132599602321,41.89019843812554,68.5]
+            ]},
+            "id": "windows22"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491327098841841,41.89017493581471,68.5],[ 12.491328063315395,41.890163198984425,68.5],[ 12.491329302801141,41.89015147647218,68.5]
+            ]},
+            "id": "windows23"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491332605214719,41.89012808867943,68.5],[ 12.491334667136304,41.890116430523065,68.5],[ 12.491337002057898,41.8901048009308,68.5]
+            ]},
+            "id": "windows24"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.49134248797264,41.890081641598734,68.5],[ 12.491345637294438,41.89007011891342,68.5],[ 12.491349056274055,41.89005863889911,68.5]
+            ]},
+            "id": "windows25"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491356698958569,41.890035820857015,68.5],[ 12.491360920335158,41.89002448977979,68.5],[ 12.491365406713673,41.89001321527251,68.5]
+            ]},
+            "id": "windows26"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491375168929274,41.889990849686754,68.5],[ 12.491380441792451,41.88997976542099,68.5],[ 12.491385973710635,41.88996875134854,68.5]
+            ]},
+            "id": "windows27"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.49139780789286,41.88994694718095,68.5],[ 12.491404106551874,41.889936163727526,68.5],[ 12.491410657056942,41.88992546374873,68.5]
+            ]},
+            "id": "windows28"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491424505547348,41.88990432722577,68.5],[ 12.491431799314112,41.889893897119904,68.5],[ 12.491439336491071,41.88988356336332,68.5]
+            ]},
+            "id": "windows29"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.49145513181821,41.88986319745859,68.5],[ 12.491463385156829,41.88985317151397,68.5],[ 12.491471872283984,41.889843254323864,68.5]
+            ]},
+            "id": "windows30"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491489537492182,41.889823758256405,68.5],[ 12.491498710192117,41.88981418531764,68.5],[ 12.49150810592001,41.889804733008745,68.5]
+            ]},
+            "id": "windows31"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491527554944327,41.88978620175976,68.5],[ 12.491537602316313,41.88977712846439,68.5],[ 12.491547860869192,41.889768187086524,68.5]
+            ]},
+            "id": "windows32"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.49156899895476,41.889750710936674,68.5],[ 12.491579872048549,41.88974218148797,68.5],[ 12.491590943447399,41.88973379460175,68.5]
+            ]},
+            "id": "windows33"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491613667611078,41.889717458691266,68.5],[ 12.491625313453923,41.889709514642945,68.5],[ 12.491637143759956,41.88970172310754,68.5]
+            ]},
+            "id": "windows34"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491661343292082,41.88968660702151,68.5],[ 12.491673705146814,41.88967928707529,68.5],[ 12.491686236724266,41.889672128849355,68.5]
+            ]},
+            "id": "windows35"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.49171179372799,41.88965830623007,68.5],[ 12.491724811369448,41.88965164604711,68.5],[ 12.491737983166363,41.88964515600395,68.5]
+            ]},
+            "id": "windows36"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491764773132036,41.88963269419209,68.5],[ 12.491778383140447,41.88962672621928,68.5],[ 12.491792130986102,41.88962093597688,68.5]
+            ]},
+            "id": "windows37"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491820023397837,41.88960989568352,68.5],[ 12.491834159467789,41.88960464899544,68.5],[ 12.491848416385315,41.889599586762515,68.5]
+            ]},
+            "id": "windows38"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491877275356801,41.889590021773344,68.5],[ 12.491891868620243,41.889585521930606,68.5],[ 12.491906565152899,41.889581212369144,68.5]
+            ]},
+            "id": "windows39"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491936250089385,41.8895731692825,68.5],[ 12.491951229451125,41.889569438207246,68.5],[ 12.49196629400066,41.88956590231238,68.5]
+            ]},
+            "id": "windows40"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.491996660283839,41.88955942031219,68.5],[ 12.492011952767871,41.88955647618128,68.5],[ 12.492027311943307,41.88955373117902,68.5]
+            ]},
+            "id": "windows41"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492058211635822,41.88954884184399,68.5],[ 12.492073742740832,41.88954669900053,68.5],[ 12.492089321715975,41.889544758263824,68.5]
+            ]},
+            "id": "windows42"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.49212060428207,41.889541485413574,68.5],[ 12.492136298344342,41.88954015429693,68.5],[ 12.492152021222287,41.88953902728057,68.5]
+            ]},
+            "id": "windows43"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.49218353426112,41.889537386859594,68.5],[ 12.49219931482313,41.88953687395464,68.5],[ 12.492215105005986,41.88953656614915,68.5]
+            ]},
+            "id": "windows44"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.49224669499401,41.88953656614915,68.5],[ 12.492262485176868,41.88953687395464,68.5],[ 12.492278265738875,41.889537386859594,68.5]
+            ]},
+            "id": "windows45"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492309778777708,41.88953902728057,68.5],[ 12.492325501655655,41.88954015429693,68.5],[ 12.492341195717929,41.889541485413574,68.5]
+            ]},
+            "id": "windows46"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492372478284024,41.889544758263824,68.5],[ 12.492388057259165,41.88954669900053,68.5],[ 12.492403588364175,41.88954884184399,68.5]
+            ]},
+            "id": "windows47"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492434488056688,41.88955373117902,68.5],[ 12.492449847232123,41.88955647618128,68.5],[ 12.49246513971616,41.88955942031219,68.5]
+            ]},
+            "id": "windows48"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492495505999335,41.88956590231238,68.5],[ 12.492510570548871,41.889569438207246,68.5],[ 12.492525549910612,41.8895731692825,68.5]
+            ]},
+            "id": "windows49"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492555234847096,41.889581212369144,68.5],[ 12.492569931379753,41.889585521930606,68.5],[ 12.492584524643197,41.889590021773344,68.5]
+            ]},
+            "id": "windows50"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492613383614682,41.889599586762515,68.5],[ 12.49262764053221,41.88960464899544,68.5],[ 12.49264177660216,41.88960989568352,68.5]
+            ]},
+            "id": "windows51"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492669669013896,41.88962093597688,68.5],[ 12.492683416859547,41.88962672621928,68.5],[ 12.49269702686796,41.88963269419209,68.5]
+            ]},
+            "id": "windows52"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492723816833635,41.88964515600395,68.5],[ 12.492736988630547,41.88965164604711,68.5],[ 12.492750006272004,41.88965830623007,68.5]
+            ]},
+            "id": "windows53"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492775563275732,41.889672128849355,68.5],[ 12.492788094853184,41.88967928707529,68.5],[ 12.492800456707917,41.88968660702151,68.5]
+            ]},
+            "id": "windows54"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.49282465624004,41.88970172310754,68.5],[ 12.492836486546075,41.889709514642945,68.5],[ 12.492848132388916,41.889717458691266,68.5]
+            ]},
+            "id": "windows55"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.4928708565526,41.88973379460175,68.5],[ 12.49288192795145,41.88974218148797,68.5],[ 12.492892801045235,41.889750710936674,68.5]
+            ]},
+            "id": "windows56"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492913939130803,41.889768187086524,68.5],[ 12.492924197683685,41.88977712846439,68.5],[ 12.49293424505567,41.88978620175976,68.5]
+            ]},
+            "id": "windows57"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492953694079986,41.889804733008745,68.5],[ 12.492963089807882,41.88981418531764,68.5],[ 12.492972262507816,41.889823758256405,68.5]
+            ]},
+            "id": "windows58"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492989927716012,41.889843254323864,68.5],[ 12.49299841484317,41.88985317151397,68.5],[ 12.493006668181788,41.88986319745859,68.5]
+            ]},
+            "id": "windows59"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.493022463508927,41.88988356336332,68.5],[ 12.493030000685886,41.889893897119904,68.5],[ 12.49303729445265,41.88990432722577,68.5]
+            ]},
+            "id": "windows60"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.493051142943054,41.88992546374873,68.5],[ 12.493057693448122,41.889936163727526,68.5],[ 12.493063992107139,41.88994694718095,68.5]
+            ]},
+            "id": "windows61"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.493075826289363,41.88996875134854,68.5],[ 12.493081358207546,41.88997976542099,68.5],[ 12.493086631070723,41.889990849686754,68.5]
+            ]},
+            "id": "windows62"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.493096393286326,41.89001321527251,68.5],[ 12.493100879664837,41.89002448977979,68.5],[ 12.493105101041426,41.890035820857015,68.5]
+            ]},
+            "id": "windows63"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.49311274372594,41.89005863889911,68.5],[ 12.493116162705558,41.89007011891342,68.5],[ 12.493119312027355,41.890081641598734,68.5]
+            ]},
+            "id": "windows64"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.493124797942096,41.8901048009308,68.5],[ 12.493127132863695,41.890116430523065,68.5],[ 12.49312919478528,41.89012808867943,68.5]
+            ]},
+            "id": "windows65"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.493132497198856,41.89015147647218,68.5],[ 12.493133736684602,41.890163198984425,68.5],[ 12.493134701158155,41.89017493581471,68.5]
+            ]},
+            "id": "windows66"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.493135803976786,41.89019843812554,68.5],[ 12.493135941985631,41.890210196447036,68.5],[ 12.49313580430992,41.8902219547707,68.5]
+            ]},
+            "id": "windows67"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.493134702155933,41.890245457098814,68.5],[ 12.49313373801308,41.890257193944215,68.5],[ 12.49313249885642,41.890268916475875,68.5]
+            ]},
+            "id": "windows68"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.49312919709455,41.890292304320184,68.5],[ 12.493127135494793,41.89030396250864,68.5],[ 12.493124800891824,41.89031559213715,68.5]
+            ]},
+            "id": "windows69"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.493119315603172,41.89033875155405,68.5],[ 12.493116166588072,41.89035027428781,68.5],[ 12.493112747910422,41.89036175435454,68.5]
+            ]},
+            "id": "windows70"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.493105105814188,41.89038457251306,68.5],[ 12.493100884723194,41.890395903654166,68.5],[ 12.493096398624113,41.890407178228976,68.5]
+            ]},
+            "id": "windows71"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.493086636947535,41.89042954396049,68.5],[ 12.49308136434329,41.89044062830431,68.5],[ 12.493075832676563,41.890451642458125,68.5]
+            ]},
+            "id": "windows72"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.493063998973613,41.890473446797984,68.5],[ 12.493057700541828,41.89048423034211,68.5],[ 12.493051150255347,41.890494930414505,68.5]
+            ]},
+            "id": "windows73"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.493037302175138,41.89051606713288,68.5],[ 12.493030008599481,41.89052649734034,68.5],[ 12.493022471603988,41.890536831200926,68.5]
+            ]},
+            "id": "windows74"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.493006676609983,41.89055719732043,68.5],[ 12.492998423422627,41.89056722337554,68.5],[ 12.492989936436283,41.89057714067805,68.5]
+            ]},
+            "id": "windows75"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492972271477672,41.890596636975445,68.5],[ 12.492963098886213,41.89060621003147,68.5],[ 12.492953703255731,41.890615662458956,68.5]
+            ]},
+            "id": "windows76"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492934254392601,41.890634193948564,68.5],[ 12.49292420708419,41.89064326736568,68.5],[ 12.49291394858343,41.89065220886603,68.5]
+            ]},
+            "id": "windows77"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492892810567506,41.890669685262516,68.5],[ 12.492881937491157,41.89067821483507,68.5],[ 12.492870866098121,41.890686601845275,68.5]
+            ]},
+            "id": "windows78"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492848141911185,41.890702938003614,68.5],[ 12.492836496039304,41.890710882175476,68.5],[ 12.492824665692666,41.89071867383397,68.5]
+            ]},
+            "id": "windows79"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492800466044844,41.890733790164234,68.5],[ 12.492788104115162,41.89074111023129,68.5],[ 12.492775572451475,41.890748268577,68.5]
+            ]},
+            "id": "windows80"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492750015241864,41.890762091432144,68.5],[ 12.492736997481002,41.89076875173088,68.5],[ 12.492723825553902,41.89077524188821,68.5]
+            ]},
+            "id": "windows81"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492697035296155,41.89078770392297,68.5],[ 12.492683425126215,41.890793672004236,68.5],[ 12.492669677108957,41.89079946235294,68.5]
+            ]},
+            "id": "windows82"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492641784324649,41.8908105028519,68.5],[ 12.492627648054182,41.89081574963902,68.5],[ 12.492613390926978,41.89082081196832,68.5]
+            ]},
+            "id": "windows83"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492584531509669,41.89083037714178,68.5],[ 12.492569938010629,41.89083487707221,68.5],[ 12.492555241234296,41.89083918671825,68.5]
+            ]},
+            "id": "windows84"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492525555787422,41.890847229964315,68.5],[ 12.492510576159589,41.8908509611142,68.5],[ 12.492495511337124,41.8908544970802,68.5]
+            ]},
+            "id": "windows85"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492465144488921,41.8908609792118,68.5],[ 12.492449851713475,41.890863923402826,68.5],[ 12.49243449224117,41.8908666684614,68.5]
+            ]},
+            "id": "windows86"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.49240359193999,41.89087155789729,68.5],[ 12.492388060523925,41.89087370078519,68.5],[ 12.492372481233751,41.890875641562275,68.5]
+            ]},
+            "id": "windows87"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492341198027198,41.89087891448089,68.5],[ 12.492325503640282,41.89088024562543,68.5],[ 12.492309780435269,41.890881372665454,68.5]
+            ]},
+            "id": "windows88"
+          },
+{
+            "type": "Feature",
+            "properties": { "Building name": "windows", "height": 1 },
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [ 12.492278266736655,41.89088301312094,68.5],[ 12.49226248584273,41.89088352603671,68.5],[ 12.492246695327145,41.89088383384868,68.5]
+            ]},
+            "id": "windows89"
+          }
+    ]
+  }
+  

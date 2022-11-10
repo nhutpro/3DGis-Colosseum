@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3DGis Colosseum</title>
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      #back {
+        position: absolute;
+        bottom: 20px;
+      }
+
+      #back i {
+        background-image: url(app/public/img/back.svg);
+        background-repeat: no-repeat;
+        display: inline-block;
+        width: 100px;
+        height: 25px;
+        padding-left: 25px;
+        padding-top: 2px;
+        margin: 10px;
+        cursor: pointer;
+        background-size: 20px;
+      }
+    </style>
+
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.24/esri/themes/light/main.css"
+    />
+    <script src="https://js.arcgis.com/4.24/"></script>
+    <script>
+      require([
+        'esri/Map',
+        'esri/views/SceneView',
+        'esri/layers/GeoJSONLayer',
+        'esri/layers/SceneLayer',
+        'esri/layers/GraphicsLayer',
+        'esri/Graphic',
+        'esri/request',
+        'esri/geometry/Circle',
+      ], function (
+        Map,
+        SceneView,
+        GeoJSONLayer,
+        SceneLayer,
+        GraphicsLayer,
+        Graphic,
+        esriRequest,
+        Circle
+      ) {
+        var createGraphic = function (data) {
+          return new Graphic({
+            geometry: data,
+            symbol: data.symbol,
+            attributes: data,
+            popupTemplate: data.popupTemplate,
+          });
+        };
+
+        // geojson layer
+
+        const layout1 = new GeoJSONLayer({
+          url: './layout1.geojson',
+        });
+        const layout2 = new GeoJSONLayer({
+          url: './layout2.geojson',
+        });
+
+        const stand1 = new GeoJSONLayer({
+          url: './stand1.geojson',
+        });
+
+        const floor3 = new GeoJSONLayer({
+          url: './floor3.geojson',
+        });
+        const pillar_floor_3 = new GeoJSONLayer({
+          url: './pillar_fl3.geojson',
+        });
+        //////
+        const floor5 = new GeoJSONLayer({
+          url: './fl5.geojson',
+        });
+        const roof = new GeoJSONLayer({
+          url: './roof.geojson',
+        });
+        const wall_fl5 = new GeoJSONLayer({
+          url: './wall_fl5.geojson',
+        });
+        const wall2_fl5 = new GeoJSONLayer({
+          url: './wall2_fl5.geojson',
+        });
+        const windows_fl5 = new GeoJSONLayer({
+          url: './windows_fl5.geojson',
+        });
+
+        layout1.renderer = {
+          type: 'simple',
+          symbol: {
+            type: 'polygon-3d',
+            symbolLayers: [
+              {
+                type: 'extrude',
+                size: 0.5,
+                material: {
+                  color: '#8e773e',
+                },
+              },
+            ],
+          },
+        };
+        layout2.renderer = {
+          type: 'simple',
+          symbol: {
+            type: 'polygon-3d',
+            symbolLayers: [
+              {
+                type: 'extrude',
+                size: 0.5,
+                material: {
+                  color: '#8e773e',
+                },
+              },
+            ],
+          },
+        };
+        stand1.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 5,
+                height: 5,
+                profile: 'quad',
+                material: {
+                  color: '#0ce861',
+                },
+              },
+            ],
+          },
+        };
+
+        floor3.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 10,
+                height: 1,
+                profile: 'quad',
+                material: {
+                  color: '#8e773e',
+                },
+              },
+            ],
+          },
+        };
+
+        pillar_floor_3.renderer = {
+          type: 'simple',
+          symbol: {
+            type: 'polygon-3d',
+            symbolLayers: [
+              {
+                type: 'extrude',
+                size: 40,
+                material: {
+                  color: '#ff0000',
+                },
+              },
+            ],
+          },
+        };
+////////////////
+floor5.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 15,
+                height: 1,
+                profile: 'quad',
+                material: {
+                  color: '#8e773e',
+                },
+              },
+            ],
+          },
+        };
+        roof.renderer = {
+          type: 'simple',
+          color: '#5B5FC7',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 10,
+                height: 1,
+                profile: 'quad',
+                material: {
+                  color: '#5B5FC7',
+                },
+              },
+            ],
+          },
+        };
+        wall_fl5.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 1,
+                height: 10,
+                profile: 'quad',
+                material: {
+                  color: '#0ce861',
+                },
+              },
+            ],
+          },
+        };
+        wall2_fl5.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 1,
+                height: 7,
+                profile: 'quad',
+                material: {
+                  color: '#0ce861',
+                },
+              },
+            ],
+          },
+        };
+        windows_fl5.renderer = {
+          type: 'simple',
+          color: '#4835c4',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 1,
+                height: 7,
+                profile: 'quad',
+                material: {
+                  color: '#4835c4',
+                },
+              },
+            ],
+          },
+        };
+
+        const map = new Map({
+          basemap: 'topo-vector',
+          // ground: "world-elevation",
+          //  center :
+          layers: [layout1, layout2, stand1, floor3, pillar_floor_3, floor5, wall_fl5, windows_fl5,  wall2_fl5, roof], //end layers
+        });
+       
+
+        const view = new SceneView({
+          container: 'viewDiv',
+          map: map,
+          center: [12.4922309, 41.8902102],
+          camera: {
+            position: [12.4922309, 41.8902102, 90],
+            heading: 120,
+            tilt: 60,
+          },
+          zoom: 100,
+        });
+
+        view.popup.defaultPopupTemplateEnabled = true;
+      });
+    </script>
+  </head>
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
