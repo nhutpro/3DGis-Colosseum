@@ -85,6 +85,23 @@
         const floor3 = new GeoJSONLayer({
           url: './floor3.geojson',
         });
+
+        const floor1 = new GeoJSONLayer({
+          url: './floor1.geojson',
+        });
+
+        const floor2 = new GeoJSONLayer({
+          url: './floor2.geojson',
+        });
+
+        const pillar_floor_1 = new GeoJSONLayer({
+          url: './pillar_fl1.geojson',
+        });
+
+        const pillar_floor_2 = new GeoJSONLayer({
+          url: './pillar_fl2.geojson',
+        });
+
         const pillar_floor_3 = new GeoJSONLayer({
           url: './pillar_fl3.geojson',
         });
@@ -153,6 +170,76 @@
           },
         };
 
+        floor1.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 10,
+                height: 1,
+                profile: 'quad',
+                material: {
+                  color: '#564B33',
+                },
+              },
+            ],
+          },
+        };
+
+        pillar_floor_1.renderer = {
+          type: 'simple',
+          symbol: {
+            type: 'polygon-3d',
+            symbolLayers: [
+              {
+                type: 'extrude',
+                size: 14,
+                material: {
+                  color: '#CA95F7',
+                },
+              },
+            ],
+          },
+        };
+
+        floor2.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 10,
+                height: 1,
+                profile: 'quad',
+                material: {
+                  color: '#564B33',
+                },
+              },
+            ],
+          },
+        };
+
+        pillar_floor_2.renderer = {
+          type: 'simple',
+          symbol: {
+            type: 'polygon-3d',
+            symbolLayers: [
+              {
+                type: 'extrude',
+                size: 15,
+                material: {
+                  color: '#564B33',
+                },
+              },
+            ],
+          },
+        };
+
         floor3.renderer = {
           type: 'simple',
           color: '#8e773e',
@@ -179,7 +266,7 @@
             symbolLayers: [
               {
                 type: 'extrude',
-                size: 40,
+                size: 15,
                 material: {
                   color: '#ff0000',
                 },
@@ -283,17 +370,22 @@
           basemap: 'topo-vector',
           // ground: "world-elevation",
           //  center :
+
           layers: [
             layout1,
             layout2,
             stand1,
             floor3,
-            pillar_floor_3,
             floor5,
             wall_fl5,
             windows_fl5,
             wall2_fl5,
             roof,
+            pillar_floor_3,
+            floor1,
+            pillar_floor_1,
+            floor2,
+            pillar_floor_2,
           ], //end layers
         });
 
