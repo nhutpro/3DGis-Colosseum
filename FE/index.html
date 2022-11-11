@@ -82,6 +82,12 @@
           url: './stand1.geojson',
         });
 
+        const stand2 = new GeoJSONLayer({
+          url: './stand2.geojson',
+        });
+        const stand3 = new GeoJSONLayer({
+          url: './stand3.geojson',
+        });
         const floor3 = new GeoJSONLayer({
           url: './floor3.geojson',
         });
@@ -127,17 +133,52 @@
             symbolLayers: [
               {
                 type: 'path',
-                width: 5,
-                height: 5,
+                width: 15,
+                height: 20,
                 profile: 'quad',
                 material: {
-                  color: '#0ce861',
+                  color: '#e3c587',
                 },
               },
             ],
           },
         };
-
+        stand2.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 15,
+                height: 40,
+                profile: 'quad',
+                material: {
+                  color: '#e3c587',
+                },
+              },
+            ],
+          },
+        };
+        stand3.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 10,
+                height: 60,
+                profile: 'quad',
+                material: {
+                  color: '#e3c587',
+                },
+              },
+            ],
+          },
+        };
         floor3.renderer = {
           type: 'simple',
           color: '#8e773e',
@@ -177,7 +218,15 @@
           basemap: 'topo-vector',
           // ground: "world-elevation",
           //  center :
-          layers: [layout1, layout2, stand1, floor3, pillar_floor_3], //end layers
+          layers: [
+            layout1,
+            layout2,
+            stand1,
+            stand2,
+            stand3,
+            floor3,
+            pillar_floor_3,
+          ], //end layers
         });
 
         const view = new SceneView({
