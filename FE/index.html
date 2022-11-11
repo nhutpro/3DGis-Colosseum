@@ -88,6 +88,21 @@
         const pillar_floor_3 = new GeoJSONLayer({
           url: './pillar_fl3.geojson',
         });
+        const floor5 = new GeoJSONLayer({
+          url: './fl5.geojson',
+        });
+        const roof = new GeoJSONLayer({
+          url: './roof.geojson',
+        });
+        const wall_fl5 = new GeoJSONLayer({
+          url: './wall_fl5.geojson',
+        });
+        const wall2_fl5 = new GeoJSONLayer({
+          url: './wall2_fl5.geojson',
+        });
+        const windows_fl5 = new GeoJSONLayer({
+          url: './windows_fl5.geojson',
+        });
 
         layout1.renderer = {
           type: 'simple',
@@ -172,12 +187,114 @@
             ],
           },
         };
+        ////////////////
+        floor5.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 15,
+                height: 1,
+                profile: 'quad',
+                material: {
+                  color: '#8e773e',
+                },
+              },
+            ],
+          },
+        };
+        roof.renderer = {
+          type: 'simple',
+          color: '#5B5FC7',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 10,
+                height: 1,
+                profile: 'quad',
+                material: {
+                  color: '#5B5FC7',
+                },
+              },
+            ],
+          },
+        };
+        wall_fl5.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 1,
+                height: 10,
+                profile: 'quad',
+                material: {
+                  color: '#0ce861',
+                },
+              },
+            ],
+          },
+        };
+        wall2_fl5.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 1,
+                height: 7,
+                profile: 'quad',
+                material: {
+                  color: '#0ce861',
+                },
+              },
+            ],
+          },
+        };
+        windows_fl5.renderer = {
+          type: 'simple',
+          color: '#4835c4',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 1,
+                height: 7,
+                profile: 'quad',
+                material: {
+                  color: '#4835c4',
+                },
+              },
+            ],
+          },
+        };
 
         const map = new Map({
           basemap: 'topo-vector',
           // ground: "world-elevation",
           //  center :
-          layers: [layout1, layout2, stand1, floor3, pillar_floor_3], //end layers
+          layers: [
+            layout1,
+            layout2,
+            stand1,
+            floor3,
+            pillar_floor_3,
+            floor5,
+            wall_fl5,
+            windows_fl5,
+            wall2_fl5,
+            roof,
+          ], //end layers
         });
 
         const view = new SceneView({
