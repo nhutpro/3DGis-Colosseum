@@ -111,6 +111,12 @@
         const pillar_floor_3 = new GeoJSONLayer({
           url: './pillar_fl3.geojson',
         });
+        const pillar2_floor_3 = new GeoJSONLayer({
+          url: './pillar2_fl3.geojson',
+        });
+        const pillar3_floor_3 = new GeoJSONLayer({
+          url: './pillar3_fl3.geojson',
+        });
         const floor5 = new GeoJSONLayer({
           url: './fl5.geojson',
         });
@@ -281,6 +287,7 @@
             ],
           },
         };
+        
 
         floor3.renderer = {
           type: 'simple',
@@ -290,7 +297,7 @@
             symbolLayers: [
               {
                 type: 'path',
-                width: 10,
+                width: 30,
                 height: 1,
                 profile: 'quad',
                 material: {
@@ -302,6 +309,36 @@
         };
 
         pillar_floor_3.renderer = {
+          type: 'simple',
+          symbol: {
+            type: 'polygon-3d',
+            symbolLayers: [
+              {
+                type: 'extrude',
+                size: 15,
+                material: {
+                  color: '#ff0000',
+                },
+              },
+            ],
+          },
+        };
+        pillar2_floor_3.renderer = {
+          type: 'simple',
+          symbol: {
+            type: 'polygon-3d',
+            symbolLayers: [
+              {
+                type: 'extrude',
+                size: 15,
+                material: {
+                  color: '#ff0000',
+                },
+              },
+            ],
+          },
+        };
+        pillar3_floor_3.renderer = {
           type: 'simple',
           symbol: {
             type: 'polygon-3d',
@@ -432,6 +469,8 @@
             stand3,
             floor3,
             pillar_floor_3,
+            pillar2_floor_3,
+            pillar3_floor_3,
           ], //end layers
         });
 
