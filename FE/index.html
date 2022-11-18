@@ -102,6 +102,13 @@
           url: './pillar_fl2.geojson',
         });
 
+
+        const pillar_floor_2_class2 = new GeoJSONLayer({
+          url: './pillar_fl2_class2.geojson',
+        });
+
+
+
         const pillar_floor_3 = new GeoJSONLayer({
           url: './pillar_fl3.geojson',
         });
@@ -229,6 +236,22 @@
           },
         };
 
+        pillar_floor_2_class2.renderer={
+          type: 'simple',
+          symbol: {
+            type: 'polygon-3d',
+            symbolLayers: [
+              {
+                type: 'extrude',
+                size: 15,
+                material: {
+                  color: '#564B33',
+                },
+              },
+            ],
+          },
+        }
+
         floor3.renderer = {
           type: 'simple',
           color: '#8e773e',
@@ -268,7 +291,16 @@
           basemap: 'topo-vector',
           // ground: "world-elevation",
           //  center :
-          layers: [layout1, layout2, stand1, floor3, pillar_floor_3,floor1, pillar_floor_1, floor2, pillar_floor_2], //end layers
+          layers: [layout1, 
+          layout2,
+          stand1, 
+          floor3, 
+          pillar_floor_3,
+          floor1, 
+          pillar_floor_1, 
+          floor2, 
+          pillar_floor_2,
+          pillar_floor_2_class2], //end layers
         });
 
         const view = new SceneView({
