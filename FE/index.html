@@ -98,6 +98,7 @@
           url: './pillar_fl1.geojson',
         });
 
+        //floor2
         const pillar_floor_2 = new GeoJSONLayer({
           url: './pillar_fl2.geojson',
         });
@@ -111,7 +112,12 @@
           url: './pillar_fl2_class3.geojson',
         });
 
+        const pillar_floor_2_detail = new GeoJSONLayer({
+          url: './pillar_fl2_detail.geojson',
+        });
 
+
+//floor 3
         const pillar_floor_3 = new GeoJSONLayer({
           url: './pillar_fl3.geojson',
         });
@@ -272,6 +278,23 @@
           },
         }
 
+
+        pillar_floor_2_detail.renderer={
+          type: 'simple',
+          symbol: {
+            type: 'polygon-3d',
+            symbolLayers: [
+              {
+                type: 'extrude',
+                size: 2,
+                material: {
+                  color: '#FFCE47',
+                },
+              },
+            ],
+          },
+        }
+
         floor3.renderer = {
           type: 'simple',
           color: '#8e773e',
@@ -321,7 +344,8 @@
           floor2, 
           pillar_floor_2,
           pillar_floor_2_class2,
-        pillar_floor_2_class3], //end layers
+        pillar_floor_2_class3,
+      pillar_floor_2_detail], //end layers
         });
 
         const view = new SceneView({
