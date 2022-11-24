@@ -107,6 +107,9 @@
           url: './pillar_fl2_class2.geojson',
         });
 
+        const pillar_floor_2_class3 = new GeoJSONLayer({
+          url: './pillar_fl2_class3.geojson',
+        });
 
 
         const pillar_floor_3 = new GeoJSONLayer({
@@ -208,7 +211,7 @@
             symbolLayers: [
               {
                 type: 'path',
-                width: 20,
+                width: 30,
                 height: 1,
                 profile: 'quad',
                 material: {
@@ -229,7 +232,7 @@
                 type: 'extrude',
                 size: 15,
                 material: {
-                  color: '#564B33',
+                  color: '#FFCE47',
                 },
               },
             ],
@@ -245,7 +248,24 @@
                 type: 'extrude',
                 size: 15,
                 material: {
-                  color: '#564B33',
+                  color: '#FFCE47',
+                },
+              },
+            ],
+          },
+        }
+
+
+        pillar_floor_2_class3.renderer={
+          type: 'simple',
+          symbol: {
+            type: 'polygon-3d',
+            symbolLayers: [
+              {
+                type: 'extrude',
+                size: 15,
+                material: {
+                  color: '#FFCE47',
                 },
               },
             ],
@@ -300,7 +320,8 @@
           pillar_floor_1, 
           floor2, 
           pillar_floor_2,
-          pillar_floor_2_class2], //end layers
+          pillar_floor_2_class2,
+        pillar_floor_2_class3], //end layers
         });
 
         const view = new SceneView({
