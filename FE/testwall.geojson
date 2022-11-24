@@ -1,0 +1,15 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": { "Building name": "windows", "height": 7 },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [ 12.492215923519698,41.89092876574352,12],[ 12.492200950644069,41.890928506313,12],[ 12.49218598497691,41.8909280739982,12],[ 12.492171030120288,41.89092746890314,12]
+        ]},
+        "id": "windowsx"
+      }
+    ]
+}
