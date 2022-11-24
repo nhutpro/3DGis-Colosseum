@@ -127,6 +127,18 @@
           url: './windows_fl5.geojson',
         });
 
+        const arc_fl1 = new GeoJSONLayer({
+          url: './arc_fl1.geojson',
+        });
+
+        const arc_fl2 = new GeoJSONLayer({
+          url: './arc_fl2.geojson',
+        });
+
+        const arc_fl3 = new GeoJSONLayer({
+          url: './arc_fl3.geojson',
+        });
+
         layout1.renderer = {
           type: 'simple',
           symbol: {
@@ -408,6 +420,62 @@
           },
         };
 
+        arc_fl1.renderer = {
+          type: 'simple',
+          color: '#4835c4',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 1,
+                height: 2,
+                profile: 'quad',
+                material: {
+                  color: '#d3ab87',
+                },
+              },
+            ],
+          },
+        };
+
+        arc_fl2.renderer = {
+          type: 'simple',
+          color: '#4835c4',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 1,
+                height: 2,
+                profile: 'quad',
+                material: {
+                  color: '#d3ab87',
+                },
+              },
+            ],
+          },
+        };
+        arc_fl3.renderer = {
+          type: 'simple',
+          color: '#4835c4',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 1,
+                height: 2,
+                profile: 'quad',
+                material: {
+                  color: '#d3ab87',
+                },
+              },
+            ],
+          },
+        };
+
         const map = new Map({
           basemap: 'topo-vector',
           // ground: "world-elevation",
@@ -432,6 +500,9 @@
             stand3,
             floor3,
             pillar_floor_3,
+            arc_fl1,
+            arc_fl2,
+            arc_fl3,
           ], //end layers
         });
 
