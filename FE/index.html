@@ -88,6 +88,15 @@
         const stand3 = new GeoJSONLayer({
           url: './stand3.geojson',
         });
+        const stand4 = new GeoJSONLayer({
+          url: './stand4.geojson',
+        });
+        const stand5 = new GeoJSONLayer({
+          url: './stand5.geojson',
+        });
+        const round1 = new GeoJSONLayer({
+          url: './round1.geojson',
+        });
         const floor3 = new GeoJSONLayer({
           url: './floor3.geojson',
         });
@@ -212,7 +221,60 @@
             ],
           },
         };
-
+        stand4.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 8,
+                height: 3,
+                profile: 'quad',
+                material: {
+                  color: '#e3c587',
+                },
+              },
+            ],
+          },
+        };
+        stand5.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 2,
+                height: 1,
+                profile: 'quad',
+                material: {
+                  color: '#e3c587',
+                },
+              },
+            ],
+          },
+        };
+        round1.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 2,
+                height: 12,
+                profile: 'quad',
+                material: {
+                  color: '#e3c587',
+                },
+              },
+            ],
+          },
+        };
         floor1.renderer = {
           type: 'simple',
           color: '#8e773e',
@@ -431,6 +493,9 @@
             pillar_floor_2,
             stand2,
             stand3,
+            stand4,
+            stand5,
+            round1,
             floor3,
             pillar_floor_3,
           ], //end layers
