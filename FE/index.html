@@ -95,9 +95,21 @@
         const floor1 = new GeoJSONLayer({
           url: './floor1.geojson',
         });
+        const floor1_class1 = new GeoJSONLayer({
+          url: './floor1class1.geojson',
+        });
+        const floor1_class2 = new GeoJSONLayer({
+          url: './floor1class2.geojson',
+        });
 
         const floor2 = new GeoJSONLayer({
           url: './floor2.geojson',
+        });
+        const floor2_class1 = new GeoJSONLayer({
+          url: './floor2class1.geojson',
+        });
+        const floor2_class2 = new GeoJSONLayer({
+          url: './floor2class2.geojson',
         });
 
         const pillar_floor_1 = new GeoJSONLayer({
@@ -248,7 +260,7 @@
             symbolLayers: [
               {
                 type: 'path',
-                width: 10,
+                width: 30,
                 height: 1,
                 profile: 'quad',
                 material: {
@@ -258,6 +270,43 @@
             ],
           },
         };
+        floor1_class1.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 25,
+                height: 1,
+                profile: 'quad',
+                material: {
+                  color: '#564B33',
+                },
+              },
+            ],
+          },
+        };
+        floor1_class2.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 23,
+                height: 1,
+                profile: 'quad',
+                material: {
+                  color: '#564B33',
+                },
+              },
+            ],
+          },
+        };
+
 
         pillar_floor_1.renderer = {
           type: 'simple',
@@ -284,10 +333,46 @@
               {
                 type: 'path',
                 width: 30,
+                height: 0.8,
+                profile: 'quad',
+                material: {
+                  color: '#564B33',
+                },
+              },
+            ],
+          },
+        };
+        floor2_class1.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 22,
                 height: 1,
                 profile: 'quad',
                 material: {
                   color: '#564B33',
+                },
+              },
+            ],
+          },
+        };
+        floor2_class2.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 21,
+                height: 1,
+                profile: 'quad',
+                material: {
+                  color: '#ddbd66',
                 },
               },
             ],
@@ -474,7 +559,7 @@
             symbolLayers: [
               {
                 type: 'path',
-                width: 10,
+                width: 30,
                 height: 1,
                 profile: 'quad',
                 material: {
@@ -557,6 +642,8 @@
             roof,
             pillar_floor_3,
             floor1,
+            floor1_class1,
+            floor1_class2,
             pillar_floor_1,
             floor2,
             pillar_floor_2,
@@ -569,7 +656,10 @@
 
             pillar_floor_2_class2,
             pillar_floor_2_class3,
-            pillar_floor_2_detail
+            pillar_floor_2_detail,
+
+            floor2_class1,
+            floor2_class2
           ], //end layers
          
         });
