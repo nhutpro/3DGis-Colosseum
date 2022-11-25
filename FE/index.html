@@ -374,6 +374,24 @@
           url: './pillar_roof_class1.geojson',
         });
 
+        //decor pillar roof
+        const pillar_roof_detail1 = new GeoJSONLayer({
+          url: './pillar_roof_detail/pillar_roof_detail1.geojson',
+        });
+
+        const pillar_roof_detail2 = new GeoJSONLayer({
+          url: './pillar_roof_detail/pillar_roof_detail2.geojson',
+        });
+
+        const pillar_roof_detail3 = new GeoJSONLayer({
+          url: './pillar_roof_detail/pillar_roof_detail3.geojson',
+        });
+
+        const pillar_roof_detail4 = new GeoJSONLayer({
+          url: './pillar_roof_detail/pillar_roof_detail4.geojson',
+        });
+
+
         layout1.renderer = {
           type: 'simple',
           symbol: {
@@ -667,6 +685,7 @@
               {
                 type: 'extrude',
                 size: 0.3,
+              
                 material: {
                   color: '#FFCE47',
                 },
@@ -1114,7 +1133,7 @@
             symbolLayers: [
               {
                 type: 'object',
-                size: 1,
+                size: 1.2,
                 resource: { primitive: 'cone' },
                 width: 2.2,
                 height: 5,
@@ -1190,7 +1209,7 @@
               {
                 type: 'path',
                 width: 1,
-                height: 8,
+                height: 9,
                 profile: 'quad',
                 material: {
                   color: '#d69155',
@@ -1682,7 +1701,7 @@
             symbolLayers: [
               {
                 type: 'object',
-                width: 2.4,
+                width: 2.5,
                 roll: 180,
                 resource: { primitive: 'cone' },
                 size: 2,
@@ -1717,7 +1736,7 @@
             symbolLayers: [
               {
                 type: 'extrude',
-                size: 14,
+                size: 8,
                 material: {
                   color: '#F17627',
                 },
@@ -1725,6 +1744,86 @@
             ],
           },
         };
+
+
+
+        pillar_roof_detail1.renderer = {
+          type: 'simple',
+          symbol: {
+            type: 'polygon-3d',
+            symbolLayers: [
+              {
+                type: 'object',
+                width: 2,
+                roll: 180,
+                resource: { primitive: 'cone' },
+                size: 2,
+                height:5,
+                material: {
+                  color: '#FFCE47',
+                },
+              },
+            ],
+          },
+        };
+
+
+        pillar_roof_detail2.renderer = {
+          type: 'simple',
+          symbol: {
+            type: 'polygon-3d',
+            symbolLayers: [
+              {
+                type: 'extrude',
+                size: 0.25,
+                material: {
+                  color: '#FFCE47',
+                },
+              },
+            ],
+          },
+        };
+
+
+        pillar_roof_detail3.renderer = {
+          type: 'simple',
+          symbol: {
+            type: 'polygon-3d',
+            symbolLayers: [
+              {
+                type: 'object',
+                width: 2.2,
+                roll: 180,
+                resource: { primitive: 'cone' },
+                height:3,
+                size: 2,
+                material: {
+                  color: '#FFCE47',
+                },
+              },
+            ],
+          },
+        };
+
+
+        pillar_roof_detail4.renderer = {
+          type: 'simple',
+          symbol: {
+            type: 'polygon-3d',
+            symbolLayers: [
+              {
+                type: 'extrude',
+                size: 1,
+                material: {
+                  color: '#FFCE47',
+                },
+              },
+            ],
+          },
+        };
+
+
+
 
         const map = new Map({
           basemap: 'topo-vector',
@@ -1809,6 +1908,10 @@
             pillar_floor_4_detail9,
             pillar_floor_4_detail10,
             pillar_roof_class1,
+            pillar_roof_detail1,
+            pillar_roof_detail2,
+            pillar_roof_detail3,
+            pillar_roof_detail4,
           ], //end layers
         });
 
