@@ -94,8 +94,14 @@
         const stand5 = new GeoJSONLayer({
           url: './stand5.geojson',
         });
+        const stand6 = new GeoJSONLayer({
+          url: './stand6.geojson',
+        });
         const round1 = new GeoJSONLayer({
           url: './round1.geojson',
+        });
+        const round2 = new GeoJSONLayer({
+          url: './round2.geojson',
         });
         const floor3 = new GeoJSONLayer({
           url: './floor3.geojson',
@@ -283,6 +289,26 @@
             ],
           },
         };
+        // 66
+        stand6.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 5,
+                height: 5,
+                profile: 'quad',
+                material: {
+                  color: '#e3c587',
+                },
+              },
+            ],
+          },
+        };
+        // 50
         round1.renderer = {
           type: 'simple',
           color: '#8e773e',
@@ -293,6 +319,24 @@
                 type: 'path',
                 width: 2,
                 height: 12,
+                profile: 'quad',
+                material: {
+                  color: '#e3c587',
+                },
+              },
+            ],
+          },
+        };
+        round2.renderer = {
+          type: 'simple',
+          color: '#8e773e',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 2,
+                height: 15,
                 profile: 'quad',
                 material: {
                   color: '#e3c587',
@@ -623,6 +667,8 @@
             stand4,
             stand5,
             round1,
+            round2,
+            stand6,
             pillar_floor_4,
             pillar_floor_4_decor,
             pillar_floor_4_decor2,
