@@ -3,7 +3,7 @@
     "features": [
       {
         "type": "Feature",
-        "properties": { "Building name": "floor #2", "height": 30 },
+        "properties": { "Building name": "floor #1 class 1", "height": 30 },
         "geometry": {
           "type": "LineString",
           "coordinates": [
@@ -171,7 +171,7 @@
             [12.492192999006878, 41.89092829816623,2]
           ]
         },
-        "id": "floor2"
+        "id": "floor1 class 1"
       }
     ]
   }
