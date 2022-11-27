@@ -120,6 +120,12 @@
         const floor2 = new GeoJSONLayer({
           url: './floor2.geojson',
         });
+        const under_floor_layer1 = new GeoJSONLayer({
+          url: './floor/underFloorLayer1.geojson',
+        });
+        const under_floor_layer2 = new GeoJSONLayer({
+          url: './floor/underFloorLayer2.geojson',
+        });
         const floor2_class1 = new GeoJSONLayer({
           url: './floor2class1.geojson',
         });
@@ -787,8 +793,44 @@
             symbolLayers: [
               {
                 type: 'path',
-                width: 30,
-                height: 0.8,
+                width: 25,
+                height: 0.2,
+                profile: 'quad',
+                material: {
+                  color: '#A4794B',
+                },
+              },
+            ],
+          },
+        };
+        under_floor_layer1.renderer = {
+          type: 'simple',
+          color: '#93643C',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 22.35,
+                height: 0.25,
+                profile: 'quad',
+                material: {
+                  color: '#A4794B',
+                },
+              },
+            ],
+          },
+        };
+        under_floor_layer2.renderer = {
+          type: 'simple',
+          color: '#93643C',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 22.2,
+                height: 1,
                 profile: 'quad',
                 material: {
                   color: '#A4794B',
@@ -806,7 +848,7 @@
               {
                 type: 'path',
                 width: 22,
-                height: 2,
+                height: 1.7,
                 profile: 'quad',
                 material: {
                   color: '#A4794B',
@@ -824,7 +866,7 @@
               {
                 type: 'path',
                 width: 21,
-                height: 4.8,
+                height: 4.2,
                 profile: 'quad',
                 material: {
                   color: '#A4794B',
@@ -1066,8 +1108,8 @@
             symbolLayers: [
               {
                 type: 'path',
-                width: 30,
-                height: 1,
+                width: 25,
+                height: 0.2,
                 profile: 'quad',
                 material: {
                   color: '#A4794B',
@@ -1844,6 +1886,8 @@
             floor1_class1,
             floor1_class2,
             floor2,
+            under_floor_layer1,
+            under_floor_layer2,
             stand2,
             stand3,
             stand4,
