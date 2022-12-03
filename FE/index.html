@@ -43,9 +43,13 @@
     <script>
       async function Gis() {
         let bodyLineList;
-
-        const response = await fetch('http://localhost:5000/bodyLine');
-        bodyLineList = await response.json();
+        let bodyPolygonList;
+        const responseBodyLine = await fetch('http://localhost:5000/bodyline');
+        bodyLineList = await responseBodyLine.json();
+        const responseBodyPolygon = await fetch(
+          'http://localhost:5000/bodypolygon'
+        );
+        bodyPolygonList = await responseBodyPolygon.json();
 
         require([
           'esri/Map',
@@ -77,9 +81,9 @@
 
           // geojson layer
 
-          const layout1 = new GeoJSONLayer({
-            url: './layout1.geojson',
-          });
+          // const layout1 = new GeoJSONLayer({
+          //   url: './layout1.geojson',
+          // });
           const layout2 = new GeoJSONLayer({
             url: './layout2.geojson',
           });
@@ -397,21 +401,21 @@
             url: './pillar_roof_detail/pillar_roof_detail4.geojson',
           });
 
-          layout1.renderer = {
-            type: 'simple',
-            symbol: {
-              type: 'polygon-3d',
-              symbolLayers: [
-                {
-                  type: 'extrude',
-                  size: 0.5,
-                  material: {
-                    color: '#93643C',
-                  },
-                },
-              ],
-            },
-          };
+          // layout1.renderer = {
+          //   type: 'simple',
+          //   symbol: {
+          //     type: 'polygon-3d',
+          //     symbolLayers: [
+          //       {
+          //         type: 'extrude',
+          //         size: 0.5,
+          //         material: {
+          //           color: '#93643C',
+          //         },
+          //       },
+          //     ],
+          //   },
+          // };
 
           layout2.renderer = {
             type: 'simple',
@@ -1823,84 +1827,84 @@
           };
 
           const layers = [
-            layout1,
-            layout2,
-            stand1,
-            floor3,
-            floor5,
-            wall_fl5,
-            windows_fl5,
-            wall2_fl5,
+            // layout1,
+            // layout2,
+            // stand1,
+            // floor3,
+            // floor5,
+            // wall_fl5,
+            // windows_fl5,
+            // wall2_fl5,
             // roof,
-            floor1,
-            floor1_class1,
-            floor1_class2,
-            floor2,
-            stand2,
-            stand3,
-            stand4,
-            stand5,
-            round1,
-            round2,
-            stand6,
-            pillar_floor_2_class2,
-            pillar_floor_2_class3,
-            arc_fl1,
-            wall_fl1,
-            arc_fl2,
-            wall_fl2,
-            arc_fl3,
-            wall_fl3,
-            floor2_class1,
-            floor2_class2,
-            pillar_floor_1_class1,
-            pillar_floor_1_class2,
-            pillar_floor_1_class3,
-            pillar_floor_1_detail1,
-            pillar_floor_1_detail2,
-            pillar_floor_1_detail3,
-            pillar_floor_1_detail4,
-            pillar_floor_1_detail5,
-            pillar_floor_1_detail6,
-            pillar_floor_2_class1,
-            pillar_floor_2_detail1,
-            pillar_floor_2_detail2,
-            pillar_floor_2_detail3,
-            pillar_floor_2_detail4,
-            pillar_floor_2_detail5,
-            pillar_floor_2_detail6,
-            pillar_floor_2_detail7,
-            pillar_floor_2_detail8,
-            pillar_floor_2_detail9,
-            pillar_floor_2_detail10,
-            pillar_floor_3_class1,
-            pillar_floor_3_class2,
-            pillar_floor_3_detail1,
-            pillar_floor_3_detail2,
-            pillar_floor_3_detail3,
-            pillar_floor_3_detail4,
-            pillar_floor_3_detail5,
-            pillar_floor_3_detail6,
-            pillar_floor_3_detail7,
-            pillar_floor_3_detail8,
-            pillar_floor_3_detail9,
-            pillar_floor_3_detail10,
-            pillar_floor_4_class1,
-            pillar_floor_4_detail1,
-            pillar_floor_4_detail2,
-            pillar_floor_4_detail3,
-            pillar_floor_4_detail4,
-            pillar_floor_4_detail5,
-            pillar_floor_4_detail6,
-            pillar_floor_4_detail7,
-            pillar_floor_4_detail8,
-            pillar_floor_4_detail9,
-            pillar_floor_4_detail10,
-            pillar_roof_class1,
-            pillar_roof_detail1,
-            pillar_roof_detail2,
-            pillar_roof_detail3,
-            pillar_roof_detail4,
+            // floor1,
+            // floor1_class1,
+            // floor1_class2,
+            // floor2,
+            // stand2,
+            // stand3,
+            // stand4,
+            // stand5,
+            // round1,
+            // round2,
+            // stand6,
+            // pillar_floor_2_class2,
+            // pillar_floor_2_class3,
+            // arc_fl1,
+            // wall_fl1,
+            // arc_fl2,
+            // wall_fl2,
+            // arc_fl3,
+            // wall_fl3,
+            // floor2_class1,
+            // floor2_class2,
+            // pillar_floor_1_class1,
+            // pillar_floor_1_class2,
+            // pillar_floor_1_class3,
+            // pillar_floor_1_detail1,
+            // pillar_floor_1_detail2,
+            // pillar_floor_1_detail3,
+            // pillar_floor_1_detail4,
+            // pillar_floor_1_detail5,
+            // pillar_floor_1_detail6,
+            // pillar_floor_2_class1,
+            // pillar_floor_2_detail1,
+            // pillar_floor_2_detail2,
+            // pillar_floor_2_detail3,
+            // pillar_floor_2_detail4,
+            // pillar_floor_2_detail5,
+            // pillar_floor_2_detail6,
+            // pillar_floor_2_detail7,
+            // pillar_floor_2_detail8,
+            // pillar_floor_2_detail9,
+            // pillar_floor_2_detail10,
+            // pillar_floor_3_class1,
+            // pillar_floor_3_class2,
+            // pillar_floor_3_detail1,
+            // pillar_floor_3_detail2,
+            // pillar_floor_3_detail3,
+            // pillar_floor_3_detail4,
+            // pillar_floor_3_detail5,
+            // pillar_floor_3_detail6,
+            // pillar_floor_3_detail7,
+            // pillar_floor_3_detail8,
+            // pillar_floor_3_detail9,
+            // pillar_floor_3_detail10,
+            // pillar_floor_4_class1,
+            // pillar_floor_4_detail1,
+            // pillar_floor_4_detail2,
+            // pillar_floor_4_detail3,
+            // pillar_floor_4_detail4,
+            // pillar_floor_4_detail5,
+            // pillar_floor_4_detail6,
+            // pillar_floor_4_detail7,
+            // pillar_floor_4_detail8,
+            // pillar_floor_4_detail9,
+            // pillar_floor_4_detail10,
+            // pillar_roof_class1,
+            // pillar_roof_detail1,
+            // pillar_roof_detail2,
+            // pillar_roof_detail3,
+            // pillar_roof_detail4,
           ];
 
           for (let bodyLine of bodyLineList) {
@@ -1954,6 +1958,54 @@
             layers.push(layer);
           }
 
+          for (let bodyPolygon of bodyPolygonList) {
+            const geojson = {
+              type: 'FeatureCollection',
+              features: [
+                {
+                  type: 'Feature',
+                  properties: {
+                    'Building name': bodyPolygon.nameInfo,
+                    height: bodyPolygon.heightInfo,
+                  },
+                  geometry: {
+                    type: 'Polygon',
+                    coordinates: [bodyPolygon.face.coordinates],
+                  },
+                  id: bodyPolygon._id,
+                },
+              ],
+            };
+
+            // create a new blob from geojson featurecollection
+            const blob = new Blob([JSON.stringify(geojson)], {
+              type: 'application/json',
+            });
+
+            // URL reference to the blob
+            const url = URL.createObjectURL(blob);
+            // create new geojson layer using the blob url
+            const layer = new GeoJSONLayer({
+              url,
+            });
+            const { bodyWidth, resource, roll } = bodyPolygon;
+            layer.renderer = {
+              type: 'simple',
+              symbol: {
+                type: 'polygon-3d',
+                symbolLayers: [
+                  {
+                    type: bodyPolygon.type,
+                    size: bodyPolygon.size,
+                    material: {
+                      color: bodyPolygon.primaryColor,
+                    },
+                  },
+                ],
+              },
+            };
+            layers.push(layer);
+          }
           const map = new Map({
             basemap: 'topo-vector',
             // ground: "world-elevation",

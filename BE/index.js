@@ -13,6 +13,7 @@ connectDatabase();
 app.post('/bodyline', BodyLineController.createBodyLine);
 app.get('/bodyline', BodyLineController.getAllBodyLine);
 app.post('/bodypolygon', BodyPolygonController.createBodyPolygon);
+app.get('/bodypolygon', BodyPolygonController.getAllBodyPolygon);
 app.get('', (req, res) => {
   res.send('Hello');
 });

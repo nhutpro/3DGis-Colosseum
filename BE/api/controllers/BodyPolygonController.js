@@ -5,7 +5,7 @@ export class BodyPolygonController {
   async getAllBodyPolygon(req, res) {
     try {
       console.log('GET /bodypolygon');
-      const bodyLineList = await BodyPolygon.find({})
+      const bodyPolygonList = await BodyPolygon.find({})
         .populate({
           path: 'face',
           populate: {
@@ -14,12 +14,12 @@ export class BodyPolygonController {
           },
         })
         .lean();
-      for (let bodyLine of bodyLineList) {
-        let coordinatesArray = bodyLine.face.coordinates;
+      for (let bodyPolygon of bodyPolygonList) {
+        let coordinatesArray = bodyPolygon.face.coordinates;
         coordinatesArray = coordinatesArray.map(({ x, y, z }) => [x, y, z]);
-        bodyLine.face.coordinates = coordinatesArray;
+        bodyPolygon.face.coordinates = coordinatesArray;
       }
-      res.json(bodyLineList);
+      res.json(bodyPolygonList);
     } catch (error) {
       console.log('Error', error);
       throw new Error('Something is wrong when get all body line');
