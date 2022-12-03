@@ -254,6 +254,9 @@
         const wall_fl5 = new GeoJSONLayer({
           url: './wall_fl5.geojson',
         });
+        const wall = new GeoJSONLayer({
+          url: './wall.geojson',
+        });
         const wall2_fl5 = new GeoJSONLayer({
           url: './wall2_fl5.geojson',
         });
@@ -1242,6 +1245,24 @@
             ],
           },
         };
+        wall.renderer = {
+          type: 'simple',
+          color: '#93643C',
+          symbol: {
+            type: 'line-3d',
+            symbolLayers: [
+              {
+                type: 'path',
+                width: 1,
+                height: 15,
+                profile: 'quad',
+                material: {
+                  color: '#DEC17F',
+                },
+              },
+            ],
+          },
+        };
         wall2_fl5.renderer = {
           type: 'simple',
           color: '#93643C',
@@ -1880,6 +1901,7 @@
             floor3,
             floor5,
             wall_fl5,
+            wall,
             windows_fl5,
             wall2_fl5,
             roof,
