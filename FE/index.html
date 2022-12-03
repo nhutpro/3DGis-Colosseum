@@ -1939,7 +1939,7 @@
             });
             layer.renderer = {
               type: 'simple',
-              color: bodyLine.secondColor,
+
               symbol: {
                 type: 'line-3d',
                 symbolLayers: [
@@ -1949,7 +1949,7 @@
                     height: bodyLine.bodyHeight,
                     profile: 'quad',
                     material: {
-                      color: bodyLine.primaryColor,
+                      color: bodyLine.color,
                     },
                   },
                 ],
@@ -1998,7 +1998,7 @@
                     type: bodyPolygon.type,
                     size: bodyPolygon.size,
                     material: {
-                      color: bodyPolygon.primaryColor,
+                      color: bodyPolygon.color,
                     },
                   },
                 ],

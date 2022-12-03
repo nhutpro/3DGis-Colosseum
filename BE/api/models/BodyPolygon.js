@@ -3,7 +3,7 @@ const BodyPolygon = new Schema(
   {
     nameInfo: String,
     heightInfo: String,
-    primaryColor: String,
+    color: String,
     resource: { type: String, default: null },
     bodyWidth: { type: Number, default: null },
     size: Number,
