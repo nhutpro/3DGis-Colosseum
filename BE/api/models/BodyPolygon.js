@@ -4,8 +4,11 @@ const BodyPolygon = new Schema(
     nameInfo: String,
     heightInfo: String,
     primaryColor: String,
-    resource: String,
-    body_width: String,
+    resource: { type: String, default: null },
+    bodyWidth: { type: Number, default: null },
+    size: Number,
+    type: String,
+    roll: { type: Number, default: null },
     face: { type: Schema.Types.ObjectId, ref: 'Face' },
   },
   { collection: 'BodyPolygon' }

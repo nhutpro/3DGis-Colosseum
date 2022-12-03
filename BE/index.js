@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDatabase from './mongoose/index.js';
 import BodyLineController from './api/controllers/BodyLineController.js';
-
+import BodyPolygonController from './api/controllers/BodyPolygonController.js';
 dotenv.config();
 const app = express();
 app.use(cors());
@@ -12,6 +12,7 @@ connectDatabase();
 
 app.post('/bodyline', BodyLineController.createBodyLine);
 app.get('/bodyline', BodyLineController.getAllBodyLine);
+app.post('/bodypolygon', BodyPolygonController.createBodyPolygon);
 app.get('', (req, res) => {
   res.send('Hello');
 });
