@@ -41,1958 +41,2069 @@
     />
     <script src="https://js.arcgis.com/4.24/"></script>
     <script>
-      require([
-        'esri/Map',
-        'esri/views/SceneView',
-        'esri/layers/GeoJSONLayer',
-        'esri/layers/SceneLayer',
-        'esri/layers/GraphicsLayer',
-        'esri/Graphic',
-        'esri/request',
-        'esri/geometry/Circle',
-      ], function (
-        Map,
-        SceneView,
-        GeoJSONLayer,
-        SceneLayer,
-        GraphicsLayer,
-        Graphic,
-        esriRequest,
-        Circle
-      ) {
-        var createGraphic = function (data) {
-          return new Graphic({
-            geometry: data,
-            symbol: data.symbol,
-            attributes: data,
-            popupTemplate: data.popupTemplate,
+      async function Gis() {
+        let bodyLineList;
+        let bodyPolygonList;
+        const fetchArray = [
+          fetch('http://localhost:5000/bodyline/all'),
+          fetch('http://localhost:5000/bodypolygon/all'),
+        ];
+        const [responseBodyLine, responseBodyPolygon] = await Promise.all(
+          fetchArray
+        );
+        bodyLineList = await responseBodyLine.json();
+        bodyPolygonList = await responseBodyPolygon.json();
+
+        require([
+          'esri/Map',
+          'esri/views/SceneView',
+          'esri/layers/GeoJSONLayer',
+          'esri/layers/SceneLayer',
+          'esri/layers/GraphicsLayer',
+          'esri/Graphic',
+          'esri/request',
+          'esri/geometry/Circle',
+        ], function (
+          Map,
+          SceneView,
+          GeoJSONLayer,
+          SceneLayer,
+          GraphicsLayer,
+          Graphic,
+          esriRequest,
+          Circle
+        ) {
+          var createGraphic = function (data) {
+            return new Graphic({
+              geometry: data,
+              symbol: data.symbol,
+              attributes: data,
+              popupTemplate: data.popupTemplate,
+            });
+          };
+
+          // geojson layer
+
+          const layout1 = new GeoJSONLayer({
+            url: './layout1.geojson',
           });
-        };
-
-        // geojson layer
-
-        const layout1 = new GeoJSONLayer({
-          url: './layout1.geojson',
-        });
-        const layout2 = new GeoJSONLayer({
-          url: './layout2.geojson',
-        });
-
-        const stand1 = new GeoJSONLayer({
-          url: './stand1.geojson',
-        });
-
-        const stand2 = new GeoJSONLayer({
-          url: './stand2.geojson',
-        });
-        const stand3 = new GeoJSONLayer({
-          url: './stand3.geojson',
-        });
-        const stand4 = new GeoJSONLayer({
-          url: './stand4.geojson',
-        });
-        const stand5 = new GeoJSONLayer({
-          url: './stand5.geojson',
-        });
-        const stand6 = new GeoJSONLayer({
-          url: './stand6.geojson',
-        });
-        const round1 = new GeoJSONLayer({
-          url: './round1.geojson',
-        });
-        const round2 = new GeoJSONLayer({
-          url: './round2.geojson',
-        });
-        const floor3 = new GeoJSONLayer({
-          url: './floor3.geojson',
-        });
-
-        const floor1 = new GeoJSONLayer({
-          url: './floor1.geojson',
-        });
-        const floor1_class1 = new GeoJSONLayer({
-          url: './floor1class1.geojson',
-        });
-        const floor1_class2 = new GeoJSONLayer({
-          url: './floor1class2.geojson',
-        });
-
-        const floor2 = new GeoJSONLayer({
-          url: './floor2.geojson',
-        });
-        const under_floor_layer1 = new GeoJSONLayer({
-          url: './floor/underFloorLayer1.geojson',
-        });
-        const under_floor_layer2 = new GeoJSONLayer({
-          url: './floor/underFloorLayer2.geojson',
-        });
-        const floor2_class1 = new GeoJSONLayer({
-          url: './floor2class1.geojson',
-        });
-        const floor2_class2 = new GeoJSONLayer({
-          url: './floor2class2.geojson',
-        });
-
-        //floor 1
-
-        const pillar_floor_1_class1 = new GeoJSONLayer({
-          url: './pillar_fl1_class1.geojson',
-        });
-
-        const pillar_floor_1_class2 = new GeoJSONLayer({
-          url: './pillar_fl1_class2.geojson',
-        });
-
-        const pillar_floor_1_class3 = new GeoJSONLayer({
-          url: './pillar_fl1_class3.geojson',
-        });
-
-        //decor pillar floor 1
-
-        const pillar_floor_1_detail1 = new GeoJSONLayer({
-          url: './pillar_fl1_detail/pillar_fl1_detail1.geojson',
-        });
-
-        const pillar_floor_1_detail2 = new GeoJSONLayer({
-          url: './pillar_fl1_detail/pillar_fl1_detail2.geojson',
-        });
-
-        const pillar_floor_1_detail3 = new GeoJSONLayer({
-          url: './pillar_fl1_detail/pillar_fl1_detail3.geojson',
-        });
-
-        const pillar_floor_1_detail4 = new GeoJSONLayer({
-          url: './pillar_fl1_detail/pillar_fl1_detail4.geojson',
-        });
-
-        const pillar_floor_1_detail5 = new GeoJSONLayer({
-          url: './pillar_fl1_detail/pillar_fl1_detail5.geojson',
-        });
-
-        const pillar_floor_1_detail6 = new GeoJSONLayer({
-          url: './pillar_fl1_detail/pillar_fl1_detail6.geojson',
-        });
-
-        //floor 2----------------------------
-        const pillar_floor_2_class1 = new GeoJSONLayer({
-          url: './pillar_fl2_class1.geojson',
-        });
-
-        const pillar_floor_2_class2 = new GeoJSONLayer({
-          url: './pillar_fl2_class2.geojson',
-        });
-
-        const pillar_floor_2_class3 = new GeoJSONLayer({
-          url: './pillar_fl2_class3.geojson',
-        });
-
-        //decor pillar floor 2
-
-        const pillar_floor_2_detail1 = new GeoJSONLayer({
-          url: './pillar_fl2_detail/pillar_fl2_detail1.geojson',
-        });
-
-        const pillar_floor_2_detail2 = new GeoJSONLayer({
-          url: './pillar_fl2_detail/pillar_fl2_detail2.geojson',
-        });
-
-        const pillar_floor_2_detail3 = new GeoJSONLayer({
-          url: './pillar_fl2_detail/pillar_fl2_detail3.geojson',
-        });
-
-        const pillar_floor_2_detail4 = new GeoJSONLayer({
-          url: './pillar_fl2_detail/pillar_fl2_detail4.geojson',
-        });
-
-        const pillar_floor_2_detail5 = new GeoJSONLayer({
-          url: './pillar_fl2_detail/pillar_fl2_detail5.geojson',
-        });
-
-        const pillar_floor_2_detail6 = new GeoJSONLayer({
-          url: './pillar_fl2_detail/pillar_fl2_detail6.geojson',
-        });
-
-        const pillar_floor_2_detail7 = new GeoJSONLayer({
-          url: './pillar_fl2_detail/pillar_fl2_detail7.geojson',
-        });
-
-        const pillar_floor_2_detail8 = new GeoJSONLayer({
-          url: './pillar_fl2_detail/pillar_fl2_detail8.geojson',
-        });
-
-        const pillar_floor_2_detail9 = new GeoJSONLayer({
-          url: './pillar_fl2_detail/pillar_fl2_detail9.geojson',
-        });
-
-        const pillar_floor_2_detail10 = new GeoJSONLayer({
-          url: './pillar_fl2_detail/pillar_fl2_detail10.geojson',
-        });
-
-        //floor 3----------------------------
-        const pillar_floor_3_class1 = new GeoJSONLayer({
-          url: './pillar_fl3_class1.geojson',
-        });
-
-        const pillar_floor_3_class2 = new GeoJSONLayer({
-          url: './pillar_fl3_class2.geojson',
-        });
-        const pillar_floor_4 = new GeoJSONLayer({
-          url: './pillar_fl4.geojson',
-        });
-        const pillar_floor_4_decor = new GeoJSONLayer({
-          url: './pillar_fl4_decor.geojson',
-        });
-        const pillar_floor_4_decor2 = new GeoJSONLayer({
-          url: './pillar_fl4_decor2.geojson',
-        });
-        const floor5 = new GeoJSONLayer({
-          url: './fl5.geojson',
-        });
-        const roof = new GeoJSONLayer({
-          url: './roof.geojson',
-        });
-        const wall_fl5 = new GeoJSONLayer({
-          url: './wall_fl5.geojson',
-        });
-        const wall = new GeoJSONLayer({
-          url: './wall.geojson',
-        });
-        const wall2_fl5 = new GeoJSONLayer({
-          url: './wall2_fl5.geojson',
-        });
-        const windows_fl5 = new GeoJSONLayer({
-          url: './windows_fl5.geojson',
-        });
-        const testwall = new GeoJSONLayer({
-          url: './testwall.geojson',
-        });
-
-        const arc_fl1 = new GeoJSONLayer({
-          url: './arc_fl1.geojson',
-        });
-
-        const arc_fl2 = new GeoJSONLayer({
-          url: './arc_fl2.geojson',
-        });
-
-        const arc_fl3 = new GeoJSONLayer({
-          url: './arc_fl3.geojson',
-        });
-
-        const wall_fl1 = new GeoJSONLayer({
-          url: './wall_fl1.geojson',
-        });
-
-        const wall_fl2 = new GeoJSONLayer({
-          url: './wall_fl2.geojson',
-        });
-
-        const wall_fl3 = new GeoJSONLayer({
-          url: './wall_fl3.geojson',
-        });
-
-        //decor pillar floor 3
-        const pillar_floor_3_detail1 = new GeoJSONLayer({
-          url: './pillar_fl3_detail/pillar_fl3_detail1.geojson',
-        });
-
-        const pillar_floor_3_detail2 = new GeoJSONLayer({
-          url: './pillar_fl3_detail/pillar_fl3_detail2.geojson',
-        });
-
-        const pillar_floor_3_detail3 = new GeoJSONLayer({
-          url: './pillar_fl3_detail/pillar_fl3_detail3.geojson',
-        });
-
-        const pillar_floor_3_detail4 = new GeoJSONLayer({
-          url: './pillar_fl3_detail/pillar_fl3_detail4.geojson',
-        });
-
-        const pillar_floor_3_detail5 = new GeoJSONLayer({
-          url: './pillar_fl3_detail/pillar_fl3_detail5.geojson',
-        });
-
-        const pillar_floor_3_detail6 = new GeoJSONLayer({
-          url: './pillar_fl3_detail/pillar_fl3_detail6.geojson',
-        });
-
-        const pillar_floor_3_detail7 = new GeoJSONLayer({
-          url: './pillar_fl3_detail/pillar_fl3_detail7.geojson',
-        });
-
-        const pillar_floor_3_detail8 = new GeoJSONLayer({
-          url: './pillar_fl3_detail/pillar_fl3_detail8.geojson',
-        });
-
-        const pillar_floor_3_detail9 = new GeoJSONLayer({
-          url: './pillar_fl3_detail/pillar_fl3_detail9.geojson',
-        });
-
-        const pillar_floor_3_detail10 = new GeoJSONLayer({
-          url: './pillar_fl3_detail/pillar_fl3_detail10.geojson',
-        });
-
-        //floor 4
-        const pillar_floor_4_class1 = new GeoJSONLayer({
-          url: './pillar_fl4_class1.geojson',
-        });
-
-        //decor pillar floor 4
-        const pillar_floor_4_detail1 = new GeoJSONLayer({
-          url: './pillar_fl4_detail/pillar_fl4_detail1.geojson',
-        });
-
-        const pillar_floor_4_detail2 = new GeoJSONLayer({
-          url: './pillar_fl4_detail/pillar_fl4_detail2.geojson',
-        });
-
-        const pillar_floor_4_detail3 = new GeoJSONLayer({
-          url: './pillar_fl4_detail/pillar_fl4_detail3.geojson',
-        });
-
-        const pillar_floor_4_detail4 = new GeoJSONLayer({
-          url: './pillar_fl4_detail/pillar_fl4_detail4.geojson',
-        });
-
-        const pillar_floor_4_detail5 = new GeoJSONLayer({
-          url: './pillar_fl4_detail/pillar_fl4_detail5.geojson',
-        });
-
-        const pillar_floor_4_detail6 = new GeoJSONLayer({
-          url: './pillar_fl4_detail/pillar_fl4_detail6.geojson',
-        });
-
-        const pillar_floor_4_detail7 = new GeoJSONLayer({
-          url: './pillar_fl4_detail/pillar_fl4_detail7.geojson',
-        });
-
-        const pillar_floor_4_detail8 = new GeoJSONLayer({
-          url: './pillar_fl4_detail/pillar_fl4_detail8.geojson',
-        });
-
-        const pillar_floor_4_detail9 = new GeoJSONLayer({
-          url: './pillar_fl4_detail/pillar_fl4_detail9.geojson',
-        });
-
-        const pillar_floor_4_detail10 = new GeoJSONLayer({
-          url: './pillar_fl4_detail/pillar_fl4_detail10.geojson',
-        });
-
-        //roof
-        const pillar_roof_class1 = new GeoJSONLayer({
-          url: './pillar_roof_class1.geojson',
-        });
-
-        //decor pillar roof
-        const pillar_roof_detail1 = new GeoJSONLayer({
-          url: './pillar_roof_detail/pillar_roof_detail1.geojson',
-        });
-
-        const pillar_roof_detail2 = new GeoJSONLayer({
-          url: './pillar_roof_detail/pillar_roof_detail2.geojson',
-        });
-
-        const pillar_roof_detail3 = new GeoJSONLayer({
-          url: './pillar_roof_detail/pillar_roof_detail3.geojson',
-        });
-
-        const pillar_roof_detail4 = new GeoJSONLayer({
-          url: './pillar_roof_detail/pillar_roof_detail4.geojson',
-        });
-
-
-        layout1.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.5,
-                material: {
-                  color: '#93643C',
-                },
-              },
-            ],
-          },
-        };
-
-        layout2.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.5,
-                material: {
-                  color: '#93643C',
-                },
-              },
-            ],
-          },
-        };
-        stand1.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 5,
-                height: 3,
-                profile: 'quad',
-                material: {
-                  color: '#B6B6B9',
-                },
-              },
-            ],
-          },
-        };
-        // 36
-        stand2.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 8,
-                height: 3,
-                profile: 'quad',
-                material: {
-                  color: '#B6B6B9',
-                },
-              },
-            ],
-          },
-        };
-        stand3.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 8,
-                height: 3,
-                profile: 'quad',
-                material: {
-                  color: '#B6B6B9',
-                },
-              },
-            ],
-          },
-        };
-        stand4.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 8,
-                height: 3,
-                profile: 'quad',
-                material: {
-                  color: '#B6B6B9',
-                },
-              },
-            ],
-          },
-        };
-        stand5.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 2,
-                height: 1,
-                profile: 'quad',
-                material: {
-                  color: '#B6B6B9',
-                },
-              },
-            ],
-          },
-        };
-        // 66
-        stand6.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 5,
-                height: 5,
-                profile: 'quad',
-                material: {
-                  color: '#B6B6B9',
-                },
-              },
-            ],
-          },
-        };
-        // 50
-        round1.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 2,
-                height: 12,
-                profile: 'quad',
-                material: {
-                  color: '#B6B6B9',
-                },
-              },
-            ],
-          },
-        };
-        round2.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 2,
-                height: 15,
-                profile: 'quad',
-                material: {
-                  color: '#B6B6B9',
-                },
-              },
-            ],
-          },
-        };
-        floor1.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 35,
-                height: 1,
-                profile: 'quad',
-                material: {
-                  color: '#512B1E',
-                },
-              },
-            ],
-          },
-        };
-        floor1_class1.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 30,
-                height: 1,
-                profile: 'quad',
-                material: {
-                  color: '#512B1E',
-                },
-              },
-            ],
-          },
-        };
-        floor1_class2.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 25,
-                height: 1,
-                profile: 'quad',
-                material: {
-                  color: '#512B1E',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_1_class1.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 14,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_1_class2.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2,
-                height: 15,
-                resource: { primitive: 'cube' },
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_1_class3.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2,
-                height: 15,
-                resource: { primitive: 'cube' },
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_1_detail1.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.3,
-              
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_1_detail2.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2.4,
-                resource: { primitive: 'cone' },
-                size: 2,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_1_detail3.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.25,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_1_detail4.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.25,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_1_detail5.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2.4,
-                roll: 180,
-                resource: { primitive: 'cone' },
-                size: 2,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_1_detail6.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.3,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        floor2.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 25,
-                height: 0.4,
-                profile: 'quad',
-                material: {
-                  color: '#A4794B',
-                },
-              },
-            ],
-          },
-        };
-        under_floor_layer1.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 22.35,
-                height: 0.25,
-                profile: 'quad',
-                material: {
-                  color: '#A4794B',
-                },
-              },
-            ],
-          },
-        };
-        under_floor_layer2.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 22.2,
-                height: 1,
-                profile: 'quad',
-                material: {
-                  color: '#A4794B',
-                },
-              },
-            ],
-          },
-        };
-        floor2_class1.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 22,
-                height: 1.7,
-                profile: 'quad',
-                material: {
-                  color: '#A4794B',
-                },
-              },
-            ],
-          },
-        };
-        floor2_class2.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 21,
-                height: 4.2,
-                profile: 'quad',
-                material: {
-                  color: '#A4794B',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_2_class1.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 15,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_2_class2.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2,
-                height: 15,
-                resource: { primitive: 'cube' },
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_2_class3.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2,
-                height: 15,
-                resource: { primitive: 'cube' },
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_2_detail1.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 1.4,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_2_detail2.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2.8,
-
-                resource: { primitive: 'cone' },
-                size: 2,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_2_detail3.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 3.5,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_2_detail4.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2.7,
-                roll: 180,
-                resource: { primitive: 'cone' },
-                size: 2,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_2_detail5.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.3,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_2_detail6.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2.4,
-
-                resource: { primitive: 'cone' },
-                size: 2,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_2_detail7.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.25,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_2_detail8.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.25,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_2_detail9.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2.4,
-                roll: 180,
-                resource: { primitive: 'cone' },
-                size: 2,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_2_detail10.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.3,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        floor3.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 25,
-                height: 0.4,
-                profile: 'quad',
-                material: {
-                  color: '#A4794B',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_3_class1.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 15,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-        pillar_floor_4.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 15,
-                material: {
-                  color: '#d69155',
-                },
-              },
-            ],
-          },
-        };
-        pillar_floor_4_decor.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                size: 1,
-                resource: { primitive: 'cylinder' },
-                width: 2.2,
-                height: 0.3,
-
-                material: {
-                  color: '#d3ab87',
-                },
-              },
-            ],
-          },
-        };
-        pillar_floor_4_decor2.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                size: 1.2,
-                resource: { primitive: 'cone' },
-                width: 2.2,
-                height: 5,
-
-                material: {
-                  color: '#d3ab87',
-                },
-              },
-            ],
-          },
-        };
-        ////////////////
-        floor5.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 10,
-                height: 1,
-                profile: 'quad',
-                material: {
-                  color: '#93643C',
-                },
-              },
-            ],
-          },
-        };
-        roof.renderer = {
-          type: 'simple',
-          color: '#5B5FC7',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 30,
-                height: 0.9,
-                profile: 'quad',
-                material: {
-                  color: '#d3ab87',
-                },
-              },
-            ],
-          },
-        };
-        wall_fl5.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 1,
-                height: 10,
-                profile: 'quad',
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-        wall.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 1,
-                height: 15,
-                profile: 'quad',
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-        wall2_fl5.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 1,
-                height: 7.6,
-                profile: 'quad',
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-        windows_fl5.renderer = {
-          type: 'simple',
-          color: '#4835c4',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 1,
-                
-                height: 6,
-                profile: 'quad',
-                material: {
-                  color: '#775346',
-                },
-              },
-            ],
-          },
-        };
-
-        arc_fl1.renderer = {
-          type: 'simple',
-          color: '#4835c4',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 1,
-                height: 3,
-                profile: 'quad',
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        arc_fl2.renderer = {
-          type: 'simple',
-          color: '#4835c4',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 1,
-                height: 3,
-                profile: 'quad',
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-        arc_fl3.renderer = {
-          type: 'simple',
-          color: '#4835c4',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 1,
-                height: 3,
-                profile: 'quad',
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        wall_fl1.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 1,
-                height: 15,
-                profile: 'quad',
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        wall_fl2.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 1,
-                height: 15,
-                profile: 'quad',
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        wall_fl3.renderer = {
-          type: 'simple',
-          color: '#93643C',
-          symbol: {
-            type: 'line-3d',
-            symbolLayers: [
-              {
-                type: 'path',
-                width: 1,
-                height: 15,
-                profile: 'quad',
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_3_class2.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                type: 'object',
-                width: 2,
-                height: 15,
-                resource: { primitive: 'cube' },
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_3_detail1.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 1.4,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_3_detail2.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2.8,
-
-                resource: { primitive: 'cone' },
-                size: 2,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_3_detail3.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 3.5,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_3_detail4.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2.7,
-                roll: 180,
-                resource: { primitive: 'cone' },
-                size: 2,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_3_detail5.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.3,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_3_detail6.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2.4,
-
-                resource: { primitive: 'cone' },
-                size: 2,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_3_detail7.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.25,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_3_detail8.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.25,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_3_detail9.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2.4,
-                roll: 180,
-                resource: { primitive: 'cone' },
-                size: 2,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_3_detail10.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.3,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_4_class1.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 15,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_4_detail1.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 1.4,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_4_detail2.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2.8,
-
-                resource: { primitive: 'cone' },
-                size: 2,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_4_detail3.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 3.5,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_4_detail4.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2.7,
-                roll: 180,
-                resource: { primitive: 'cone' },
-                size: 2,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_4_detail5.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.3,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_4_detail6.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2.4,
-
-                resource: { primitive: 'cone' },
-                size: 2,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_4_detail7.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.25,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_4_detail8.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.25,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_4_detail9.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2.5,
-                roll: 180,
-                resource: { primitive: 'cone' },
-                size: 2,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_floor_4_detail10.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.3,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-        pillar_roof_class1.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 8,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-
-
-        pillar_roof_detail1.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2,
-                roll: 180,
-                resource: { primitive: 'cone' },
-                size: 2,
-                height:5,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-
-        pillar_roof_detail2.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 0.25,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-
-        pillar_roof_detail3.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'object',
-                width: 2.2,
-                roll: 180,
-                resource: { primitive: 'cone' },
-                height:3,
-                size: 2,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-
-        pillar_roof_detail4.renderer = {
-          type: 'simple',
-          symbol: {
-            type: 'polygon-3d',
-            symbolLayers: [
-              {
-                type: 'extrude',
-                size: 1,
-                material: {
-                  color: '#DEC17F',
-                },
-              },
-            ],
-          },
-        };
-
-
-
-
-        const map = new Map({
-          basemap: 'topo-vector',
-          // ground: "world-elevation",
-          //  center :
-
-          layers: [
-            layout1,
-            layout2,
-            stand1,
-            floor3,
-            floor5,
-            wall_fl5,
-            wall,
-            windows_fl5,
-            wall2_fl5,
-            roof,
-            floor1,
-            floor1_class1,
-            floor1_class2,
-            floor2,
-            under_floor_layer1,
-            under_floor_layer2,
-            stand2,
-            stand3,
-            stand4,
-            stand5,
-            round1,
-            round2,
-            stand6,
-            pillar_floor_2_class2,
-            pillar_floor_2_class3,
-            arc_fl1,
-            wall_fl1,
-            arc_fl2,
-            wall_fl2,
-            arc_fl3,
-            wall_fl3,
-            floor2_class1,
-            floor2_class2,
-            pillar_floor_1_class1,
-            pillar_floor_1_class2,
-            pillar_floor_1_class3,
-            pillar_floor_1_detail1,
-            pillar_floor_1_detail2,
-            pillar_floor_1_detail3,
-            pillar_floor_1_detail4,
-            pillar_floor_1_detail5,
-            pillar_floor_1_detail6,
-            pillar_floor_2_class1,
-            pillar_floor_2_detail1,
-            pillar_floor_2_detail2,
-            pillar_floor_2_detail3,
-            pillar_floor_2_detail4,
-            pillar_floor_2_detail5,
-            pillar_floor_2_detail6,
-            pillar_floor_2_detail7,
-            pillar_floor_2_detail8,
-            pillar_floor_2_detail9,
-            pillar_floor_2_detail10,
-            pillar_floor_3_class1,
-            pillar_floor_3_class2,
-            pillar_floor_3_detail1,
-            pillar_floor_3_detail2,
-            pillar_floor_3_detail3,
-            pillar_floor_3_detail4,
-            pillar_floor_3_detail5,
-            pillar_floor_3_detail6,
-            pillar_floor_3_detail7,
-            pillar_floor_3_detail8,
-            pillar_floor_3_detail9,
-            pillar_floor_3_detail10,
-            pillar_floor_4_class1,
-            pillar_floor_4_detail1,
-            pillar_floor_4_detail2,
-            pillar_floor_4_detail3,
-            pillar_floor_4_detail4,
-            pillar_floor_4_detail5,
-            pillar_floor_4_detail6,
-            pillar_floor_4_detail7,
-            pillar_floor_4_detail8,
-            pillar_floor_4_detail9,
-            pillar_floor_4_detail10,
-            pillar_roof_class1,
-            pillar_roof_detail1,
-            pillar_roof_detail2,
-            pillar_roof_detail3,
-            pillar_roof_detail4,
-          ], //end layers
-        });
-
-        const view = new SceneView({
-          container: 'viewDiv',
-          map: map,
-          center: [12.4922309, 41.8902102],
-          camera: {
-            position: [12.4922309, 41.8902102, 90],
-            heading: 120,
-            tilt: 60,
-          },
-          zoom: 100,
-        });
-
-        view.popup.defaultPopupTemplateEnabled = true;
-      });
+          const layout2 = new GeoJSONLayer({
+            url: './layout2.geojson',
+          });
+
+          const stand1 = new GeoJSONLayer({
+            url: './stand1.geojson',
+          });
+
+          const stand2 = new GeoJSONLayer({
+            url: './stand2.geojson',
+          });
+          const stand3 = new GeoJSONLayer({
+            url: './stand3.geojson',
+          });
+          const stand4 = new GeoJSONLayer({
+            url: './stand4.geojson',
+          });
+          const stand5 = new GeoJSONLayer({
+            url: './stand5.geojson',
+          });
+          const stand6 = new GeoJSONLayer({
+            url: './stand6.geojson',
+          });
+          const round1 = new GeoJSONLayer({
+            url: './round1.geojson',
+          });
+          const round2 = new GeoJSONLayer({
+            url: './round2.geojson',
+          });
+          const floor3 = new GeoJSONLayer({
+            url: './floor3.geojson',
+          });
+
+          const floor1 = new GeoJSONLayer({
+            url: './floor1.geojson',
+          });
+          const floor1_class1 = new GeoJSONLayer({
+            url: './floor1class1.geojson',
+          });
+          const floor1_class2 = new GeoJSONLayer({
+            url: './floor1class2.geojson',
+          });
+
+          const floor2 = new GeoJSONLayer({
+            url: './floor2.geojson',
+          });
+          const under_floor_layer1 = new GeoJSONLayer({
+            url: './floor/underFloorLayer1.geojson',
+          });
+          const under_floor_layer2 = new GeoJSONLayer({
+            url: './floor/underFloorLayer2.geojson',
+          });
+          const floor2_class1 = new GeoJSONLayer({
+            url: './floor2class1.geojson',
+          });
+          const floor2_class2 = new GeoJSONLayer({
+            url: './floor2class2.geojson',
+          });
+
+          //floor 1
+
+          const pillar_floor_1_class1 = new GeoJSONLayer({
+            url: './pillar_fl1_class1.geojson',
+          });
+
+          const pillar_floor_1_class2 = new GeoJSONLayer({
+            url: './pillar_fl1_class2.geojson',
+          });
+
+          const pillar_floor_1_class3 = new GeoJSONLayer({
+            url: './pillar_fl1_class3.geojson',
+          });
+
+          //decor pillar floor 1
+
+          const pillar_floor_1_detail1 = new GeoJSONLayer({
+            url: './pillar_fl1_detail/pillar_fl1_detail1.geojson',
+          });
+
+          const pillar_floor_1_detail2 = new GeoJSONLayer({
+            url: './pillar_fl1_detail/pillar_fl1_detail2.geojson',
+          });
+
+          const pillar_floor_1_detail3 = new GeoJSONLayer({
+            url: './pillar_fl1_detail/pillar_fl1_detail3.geojson',
+          });
+
+          const pillar_floor_1_detail4 = new GeoJSONLayer({
+            url: './pillar_fl1_detail/pillar_fl1_detail4.geojson',
+          });
+
+          const pillar_floor_1_detail5 = new GeoJSONLayer({
+            url: './pillar_fl1_detail/pillar_fl1_detail5.geojson',
+          });
+
+          const pillar_floor_1_detail6 = new GeoJSONLayer({
+            url: './pillar_fl1_detail/pillar_fl1_detail6.geojson',
+          });
+
+          //floor 2----------------------------
+          const pillar_floor_2_class1 = new GeoJSONLayer({
+            url: './pillar_fl2_class1.geojson',
+          });
+
+          const pillar_floor_2_class2 = new GeoJSONLayer({
+            url: './pillar_fl2_class2.geojson',
+          });
+
+          const pillar_floor_2_class3 = new GeoJSONLayer({
+            url: './pillar_fl2_class3.geojson',
+          });
+
+          //decor pillar floor 2
+
+          const pillar_floor_2_detail1 = new GeoJSONLayer({
+            url: './pillar_fl2_detail/pillar_fl2_detail1.geojson',
+          });
+
+          const pillar_floor_2_detail2 = new GeoJSONLayer({
+            url: './pillar_fl2_detail/pillar_fl2_detail2.geojson',
+          });
+
+          const pillar_floor_2_detail3 = new GeoJSONLayer({
+            url: './pillar_fl2_detail/pillar_fl2_detail3.geojson',
+          });
+
+          const pillar_floor_2_detail4 = new GeoJSONLayer({
+            url: './pillar_fl2_detail/pillar_fl2_detail4.geojson',
+          });
+
+          const pillar_floor_2_detail5 = new GeoJSONLayer({
+            url: './pillar_fl2_detail/pillar_fl2_detail5.geojson',
+          });
+
+          const pillar_floor_2_detail6 = new GeoJSONLayer({
+            url: './pillar_fl2_detail/pillar_fl2_detail6.geojson',
+          });
+
+          const pillar_floor_2_detail7 = new GeoJSONLayer({
+            url: './pillar_fl2_detail/pillar_fl2_detail7.geojson',
+          });
+
+          const pillar_floor_2_detail8 = new GeoJSONLayer({
+            url: './pillar_fl2_detail/pillar_fl2_detail8.geojson',
+          });
+
+          const pillar_floor_2_detail9 = new GeoJSONLayer({
+            url: './pillar_fl2_detail/pillar_fl2_detail9.geojson',
+          });
+
+          const pillar_floor_2_detail10 = new GeoJSONLayer({
+            url: './pillar_fl2_detail/pillar_fl2_detail10.geojson',
+          });
+
+          //floor 3----------------------------
+          const pillar_floor_3_class1 = new GeoJSONLayer({
+            url: './pillar_fl3_class1.geojson',
+          });
+
+          const pillar_floor_3_class2 = new GeoJSONLayer({
+            url: './pillar_fl3_class2.geojson',
+          });
+          const pillar_floor_4 = new GeoJSONLayer({
+            url: './pillar_fl4.geojson',
+          });
+          const pillar_floor_4_decor = new GeoJSONLayer({
+            url: './pillar_fl4_decor.geojson',
+          });
+          const pillar_floor_4_decor2 = new GeoJSONLayer({
+            url: './pillar_fl4_decor2.geojson',
+          });
+          const floor5 = new GeoJSONLayer({
+            url: './fl5.geojson',
+          });
+          const roof = new GeoJSONLayer({
+            url: './roof.geojson',
+          });
+          const wall_fl5 = new GeoJSONLayer({
+            url: './wall_fl5.geojson',
+          });
+          const wall = new GeoJSONLayer({
+            url: './wall.geojson',
+          });
+          const wall2_fl5 = new GeoJSONLayer({
+            url: './wall2_fl5.geojson',
+          });
+          const windows_fl5 = new GeoJSONLayer({
+            url: './windows_fl5.geojson',
+          });
+          const testwall = new GeoJSONLayer({
+            url: './testwall.geojson',
+          });
+
+          const arc_fl1 = new GeoJSONLayer({
+            url: './arc_fl1.geojson',
+          });
+
+          const arc_fl2 = new GeoJSONLayer({
+            url: './arc_fl2.geojson',
+          });
+
+          const arc_fl3 = new GeoJSONLayer({
+            url: './arc_fl3.geojson',
+          });
+
+          const wall_fl1 = new GeoJSONLayer({
+            url: './wall_fl1.geojson',
+          });
+
+          const wall_fl2 = new GeoJSONLayer({
+            url: './wall_fl2.geojson',
+          });
+
+          const wall_fl3 = new GeoJSONLayer({
+            url: './wall_fl3.geojson',
+          });
+
+          //decor pillar floor 3
+          const pillar_floor_3_detail1 = new GeoJSONLayer({
+            url: './pillar_fl3_detail/pillar_fl3_detail1.geojson',
+          });
+
+          const pillar_floor_3_detail2 = new GeoJSONLayer({
+            url: './pillar_fl3_detail/pillar_fl3_detail2.geojson',
+          });
+
+          const pillar_floor_3_detail3 = new GeoJSONLayer({
+            url: './pillar_fl3_detail/pillar_fl3_detail3.geojson',
+          });
+
+          const pillar_floor_3_detail4 = new GeoJSONLayer({
+            url: './pillar_fl3_detail/pillar_fl3_detail4.geojson',
+          });
+
+          const pillar_floor_3_detail5 = new GeoJSONLayer({
+            url: './pillar_fl3_detail/pillar_fl3_detail5.geojson',
+          });
+
+          const pillar_floor_3_detail6 = new GeoJSONLayer({
+            url: './pillar_fl3_detail/pillar_fl3_detail6.geojson',
+          });
+
+          const pillar_floor_3_detail7 = new GeoJSONLayer({
+            url: './pillar_fl3_detail/pillar_fl3_detail7.geojson',
+          });
+
+          const pillar_floor_3_detail8 = new GeoJSONLayer({
+            url: './pillar_fl3_detail/pillar_fl3_detail8.geojson',
+          });
+
+          const pillar_floor_3_detail9 = new GeoJSONLayer({
+            url: './pillar_fl3_detail/pillar_fl3_detail9.geojson',
+          });
+
+          const pillar_floor_3_detail10 = new GeoJSONLayer({
+            url: './pillar_fl3_detail/pillar_fl3_detail10.geojson',
+          });
+
+          //floor 4
+          const pillar_floor_4_class1 = new GeoJSONLayer({
+            url: './pillar_fl4_class1.geojson',
+          });
+
+          //decor pillar floor 4
+          const pillar_floor_4_detail1 = new GeoJSONLayer({
+            url: './pillar_fl4_detail/pillar_fl4_detail1.geojson',
+          });
+
+          const pillar_floor_4_detail2 = new GeoJSONLayer({
+            url: './pillar_fl4_detail/pillar_fl4_detail2.geojson',
+          });
+
+          const pillar_floor_4_detail3 = new GeoJSONLayer({
+            url: './pillar_fl4_detail/pillar_fl4_detail3.geojson',
+          });
+
+          const pillar_floor_4_detail4 = new GeoJSONLayer({
+            url: './pillar_fl4_detail/pillar_fl4_detail4.geojson',
+          });
+
+          const pillar_floor_4_detail5 = new GeoJSONLayer({
+            url: './pillar_fl4_detail/pillar_fl4_detail5.geojson',
+          });
+
+          const pillar_floor_4_detail6 = new GeoJSONLayer({
+            url: './pillar_fl4_detail/pillar_fl4_detail6.geojson',
+          });
+
+          const pillar_floor_4_detail7 = new GeoJSONLayer({
+            url: './pillar_fl4_detail/pillar_fl4_detail7.geojson',
+          });
+
+          const pillar_floor_4_detail8 = new GeoJSONLayer({
+            url: './pillar_fl4_detail/pillar_fl4_detail8.geojson',
+          });
+
+          const pillar_floor_4_detail9 = new GeoJSONLayer({
+            url: './pillar_fl4_detail/pillar_fl4_detail9.geojson',
+          });
+
+          const pillar_floor_4_detail10 = new GeoJSONLayer({
+            url: './pillar_fl4_detail/pillar_fl4_detail10.geojson',
+          });
+
+          //roof
+          const pillar_roof_class1 = new GeoJSONLayer({
+            url: './pillar_roof_class1.geojson',
+          });
+
+          //decor pillar roof
+          const pillar_roof_detail1 = new GeoJSONLayer({
+            url: './pillar_roof_detail/pillar_roof_detail1.geojson',
+          });
+
+          const pillar_roof_detail2 = new GeoJSONLayer({
+            url: './pillar_roof_detail/pillar_roof_detail2.geojson',
+          });
+
+          const pillar_roof_detail3 = new GeoJSONLayer({
+            url: './pillar_roof_detail/pillar_roof_detail3.geojson',
+          });
+
+          const pillar_roof_detail4 = new GeoJSONLayer({
+            url: './pillar_roof_detail/pillar_roof_detail4.geojson',
+          });
+
+          layout1.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.5,
+                  material: {
+                    color: '#93643C',
+                  },
+                },
+              ],
+            },
+          };
+
+          layout2.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.5,
+                  material: {
+                    color: '#93643C',
+                  },
+                },
+              ],
+            },
+          };
+          stand1.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 5,
+                  height: 3,
+                  profile: 'quad',
+                  material: {
+                    color: '#B6B6B9',
+                  },
+                },
+              ],
+            },
+          };
+          // 36
+          stand2.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 8,
+                  height: 3,
+                  profile: 'quad',
+                  material: {
+                    color: '#B6B6B9',
+                  },
+                },
+              ],
+            },
+          };
+          stand3.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 8,
+                  height: 3,
+                  profile: 'quad',
+                  material: {
+                    color: '#B6B6B9',
+                  },
+                },
+              ],
+            },
+          };
+          stand4.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 8,
+                  height: 3,
+                  profile: 'quad',
+                  material: {
+                    color: '#B6B6B9',
+                  },
+                },
+              ],
+            },
+          };
+          stand5.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 2,
+                  height: 1,
+                  profile: 'quad',
+                  material: {
+                    color: '#B6B6B9',
+                  },
+                },
+              ],
+            },
+          };
+          // 66
+          stand6.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 5,
+                  height: 5,
+                  profile: 'quad',
+                  material: {
+                    color: '#B6B6B9',
+                  },
+                },
+              ],
+            },
+          };
+          // 50
+          round1.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 2,
+                  height: 12,
+                  profile: 'quad',
+                  material: {
+                    color: '#B6B6B9',
+                  },
+                },
+              ],
+            },
+          };
+          round2.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 2,
+                  height: 15,
+                  profile: 'quad',
+                  material: {
+                    color: '#B6B6B9',
+                  },
+                },
+              ],
+            },
+          };
+          floor1.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 35,
+                  height: 1,
+                  profile: 'quad',
+                  material: {
+                    color: '#512B1E',
+                  },
+                },
+              ],
+            },
+          };
+          floor1_class1.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 30,
+                  height: 1,
+                  profile: 'quad',
+                  material: {
+                    color: '#512B1E',
+                  },
+                },
+              ],
+            },
+          };
+          floor1_class2.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 25,
+                  height: 1,
+                  profile: 'quad',
+                  material: {
+                    color: '#512B1E',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_1_class1.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 14,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_1_class2.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2,
+                  height: 15,
+                  resource: { primitive: 'cube' },
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_1_class3.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2,
+                  height: 15,
+                  resource: { primitive: 'cube' },
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_1_detail1.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.3,
+
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_1_detail2.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2.4,
+                  resource: { primitive: 'cone' },
+                  size: 2,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_1_detail3.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.25,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_1_detail4.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.25,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_1_detail5.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2.4,
+                  roll: 180,
+                  resource: { primitive: 'cone' },
+                  size: 2,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_1_detail6.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.3,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          floor2.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 25,
+                  height: 0.4,
+                  profile: 'quad',
+                  material: {
+                    color: '#A4794B',
+                  },
+                },
+              ],
+            },
+          };
+          under_floor_layer1.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 22.35,
+                  height: 0.25,
+                  profile: 'quad',
+                  material: {
+                    color: '#A4794B',
+                  },
+                },
+              ],
+            },
+          };
+          under_floor_layer2.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 22.2,
+                  height: 1,
+                  profile: 'quad',
+                  material: {
+                    color: '#A4794B',
+                  },
+                },
+              ],
+            },
+          };
+          floor2_class1.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 22,
+                  height: 1.7,
+                  profile: 'quad',
+                  material: {
+                    color: '#A4794B',
+                  },
+                },
+              ],
+            },
+          };
+          floor2_class2.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 21,
+                  height: 4.2,
+                  profile: 'quad',
+                  material: {
+                    color: '#A4794B',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_2_class1.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 15,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_2_class2.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2,
+                  height: 15,
+                  resource: { primitive: 'cube' },
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_2_class3.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2,
+                  height: 15,
+                  resource: { primitive: 'cube' },
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_2_detail1.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 1.4,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_2_detail2.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2.8,
+
+                  resource: { primitive: 'cone' },
+                  size: 2,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_2_detail3.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 3.5,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_2_detail4.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2.7,
+                  roll: 180,
+                  resource: { primitive: 'cone' },
+                  size: 2,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_2_detail5.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.3,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_2_detail6.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2.4,
+
+                  resource: { primitive: 'cone' },
+                  size: 2,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_2_detail7.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.25,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_2_detail8.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.25,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_2_detail9.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2.4,
+                  roll: 180,
+                  resource: { primitive: 'cone' },
+                  size: 2,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_2_detail10.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.3,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          floor3.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 25,
+                  height: 0.4,
+                  profile: 'quad',
+                  material: {
+                    color: '#A4794B',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_3_class1.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 15,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+          pillar_floor_4.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 15,
+                  material: {
+                    color: '#d69155',
+                  },
+                },
+              ],
+            },
+          };
+          pillar_floor_4_decor.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  size: 1,
+                  resource: { primitive: 'cylinder' },
+                  width: 2.2,
+                  height: 0.3,
+
+                  material: {
+                    color: '#d3ab87',
+                  },
+                },
+              ],
+            },
+          };
+          pillar_floor_4_decor2.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  size: 1.2,
+                  resource: { primitive: 'cone' },
+                  width: 2.2,
+                  height: 5,
+
+                  material: {
+                    color: '#d3ab87',
+                  },
+                },
+              ],
+            },
+          };
+          ////////////////
+          floor5.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 10,
+                  height: 1,
+                  profile: 'quad',
+                  material: {
+                    color: '#93643C',
+                  },
+                },
+              ],
+            },
+          };
+          roof.renderer = {
+            type: 'simple',
+            color: '#5B5FC7',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 30,
+                  height: 0.9,
+                  profile: 'quad',
+                  material: {
+                    color: '#d3ab87',
+                  },
+                },
+              ],
+            },
+          };
+          wall_fl5.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 1,
+                  height: 10,
+                  profile: 'quad',
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+          wall.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 1,
+                  height: 15,
+                  profile: 'quad',
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+          wall2_fl5.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 1,
+                  height: 7.6,
+                  profile: 'quad',
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+          windows_fl5.renderer = {
+            type: 'simple',
+            color: '#4835c4',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 1,
+
+                  height: 6,
+                  profile: 'quad',
+                  material: {
+                    color: '#775346',
+                  },
+                },
+              ],
+            },
+          };
+
+          arc_fl1.renderer = {
+            type: 'simple',
+            color: '#4835c4',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 1,
+                  height: 3,
+                  profile: 'quad',
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          arc_fl2.renderer = {
+            type: 'simple',
+            color: '#4835c4',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 1,
+                  height: 3,
+                  profile: 'quad',
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+          arc_fl3.renderer = {
+            type: 'simple',
+            color: '#4835c4',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 1,
+                  height: 3,
+                  profile: 'quad',
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          wall_fl1.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 1,
+                  height: 15,
+                  profile: 'quad',
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          wall_fl2.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 1,
+                  height: 15,
+                  profile: 'quad',
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          wall_fl3.renderer = {
+            type: 'simple',
+            color: '#93643C',
+            symbol: {
+              type: 'line-3d',
+              symbolLayers: [
+                {
+                  type: 'path',
+                  width: 1,
+                  height: 15,
+                  profile: 'quad',
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_3_class2.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  type: 'object',
+                  width: 2,
+                  height: 15,
+                  resource: { primitive: 'cube' },
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_3_detail1.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 1.4,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_3_detail2.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2.8,
+
+                  resource: { primitive: 'cone' },
+                  size: 2,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_3_detail3.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 3.5,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_3_detail4.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2.7,
+                  roll: 180,
+                  resource: { primitive: 'cone' },
+                  size: 2,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_3_detail5.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.3,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_3_detail6.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2.4,
+
+                  resource: { primitive: 'cone' },
+                  size: 2,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_3_detail7.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.25,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_3_detail8.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.25,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_3_detail9.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2.4,
+                  roll: 180,
+                  resource: { primitive: 'cone' },
+                  size: 2,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_3_detail10.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.3,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_4_class1.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 15,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_4_detail1.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 1.4,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_4_detail2.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2.8,
+
+                  resource: { primitive: 'cone' },
+                  size: 2,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_4_detail3.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 3.5,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_4_detail4.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2.7,
+                  roll: 180,
+                  resource: { primitive: 'cone' },
+                  size: 2,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_4_detail5.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.3,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_4_detail6.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2.4,
+
+                  resource: { primitive: 'cone' },
+                  size: 2,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_4_detail7.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.25,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_4_detail8.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.25,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_4_detail9.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2.5,
+                  roll: 180,
+                  resource: { primitive: 'cone' },
+                  size: 2,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_floor_4_detail10.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.3,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_roof_class1.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 8,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_roof_detail1.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2,
+                  roll: 180,
+                  resource: { primitive: 'cone' },
+                  size: 2,
+                  height: 5,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_roof_detail2.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 0.25,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_roof_detail3.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'object',
+                  width: 2.2,
+                  roll: 180,
+                  resource: { primitive: 'cone' },
+                  // height: 3,
+                  size: 2,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          pillar_roof_detail4.renderer = {
+            type: 'simple',
+            symbol: {
+              type: 'polygon-3d',
+              symbolLayers: [
+                {
+                  type: 'extrude',
+                  size: 1,
+                  material: {
+                    color: '#DEC17F',
+                  },
+                },
+              ],
+            },
+          };
+
+          const layers = [
+            // layout1,
+            // layout2,
+            // stand1,
+            // floor3,
+            // floor5,
+            // wall_fl5,
+            // wall,
+            // windows_fl5,
+            // wall2_fl5,
+            // roof,
+            // floor1,
+            // floor1_class1,
+            // floor1_class2,
+            // floor2,
+            // under_floor_layer1,
+            // under_floor_layer2,
+            // stand2,
+            // stand3,
+            // stand4,
+            // stand5,
+            // round1,
+            // round2,
+            // stand6,
+            // pillar_floor_2_class2,
+            // pillar_floor_2_class3,
+            // arc_fl1,
+            // wall_fl1,
+            // arc_fl2,
+            // wall_fl2,
+            // arc_fl3,
+            // wall_fl3,
+            // floor2_class1,
+            // floor2_class2,
+            // pillar_floor_1_class1,
+            // pillar_floor_1_class2,
+            // pillar_floor_1_class3,
+            // pillar_floor_1_detail1,
+            // pillar_floor_1_detail2,
+            // pillar_floor_1_detail3,
+            // pillar_floor_1_detail4,
+            // pillar_floor_1_detail5,
+            // pillar_floor_1_detail6,
+            // pillar_floor_2_class1,
+            // pillar_floor_2_detail1,
+            // pillar_floor_2_detail2,
+            // pillar_floor_2_detail3,
+            // pillar_floor_2_detail4,
+            // pillar_floor_2_detail5,
+            // pillar_floor_2_detail6,
+            // pillar_floor_2_detail7,
+            // pillar_floor_2_detail8,
+            // pillar_floor_2_detail9,
+            // pillar_floor_2_detail10,
+            // pillar_floor_3_class1,
+            // pillar_floor_3_class2,
+            // pillar_floor_3_detail1,
+            // pillar_floor_3_detail2,
+            // pillar_floor_3_detail3,
+            // pillar_floor_3_detail4,
+            // pillar_floor_3_detail5,
+            // pillar_floor_3_detail6,
+            // pillar_floor_3_detail7,
+            // pillar_floor_3_detail8,
+            // pillar_floor_3_detail9,
+            // pillar_floor_3_detail10,
+            // pillar_floor_4_class1,
+            // pillar_floor_4_detail1,
+            // pillar_floor_4_detail2,
+            // pillar_floor_4_detail3,
+            // pillar_floor_4_detail4,
+            // pillar_floor_4_detail5,
+            // pillar_floor_4_detail6,
+            // pillar_floor_4_detail7,
+            // pillar_floor_4_detail8,
+            // pillar_floor_4_detail9,
+            // pillar_floor_4_detail10,
+            // pillar_roof_class1,
+            // pillar_roof_detail1,
+            // pillar_roof_detail2,
+            // pillar_roof_detail3,
+            // pillar_roof_detail4,
+          ];
+
+          for (let bodyLine of bodyLineList) {
+            const geojson = {
+              type: 'FeatureCollection',
+              features: [
+                {
+                  type: 'Feature',
+                  properties: {
+                    name: bodyLine.nameInfo,
+                    height: bodyLine.heightInfo,
+                  },
+                  geometry: {
+                    type: 'LineString',
+                    coordinates: bodyLine.face.coordinates,
+                  },
+                  id: bodyLine._id,
+                },
+              ],
+            };
+
+            // create a new blob from geojson featurecollection
+            const blob = new Blob([JSON.stringify(geojson)], {
+              type: 'application/json',
+            });
+
+            // URL reference to the blob
+            const url = URL.createObjectURL(blob);
+            // create new geojson layer using the blob url
+            const layer = new GeoJSONLayer({
+              url,
+            });
+            layer.renderer = {
+              type: 'simple',
+
+              symbol: {
+                type: 'line-3d',
+                symbolLayers: [
+                  {
+                    type: 'path',
+                    width: bodyLine.width,
+                    height: bodyLine.height,
+                    profile: 'quad',
+                    material: {
+                      color: bodyLine.color,
+                    },
+                  },
+                ],
+              },
+            };
+            layers.push(layer);
+          }
+
+          for (let bodyPolygon of bodyPolygonList) {
+            const geojson = {
+              type: 'FeatureCollection',
+              features: [
+                {
+                  type: 'Feature',
+                  properties: {
+                    name: bodyPolygon.nameInfo,
+                    height: bodyPolygon.heightInfo,
+                  },
+                  geometry: {
+                    type: 'Polygon',
+                    coordinates: [bodyPolygon.face.coordinates],
+                  },
+                  id: bodyPolygon._id,
+                },
+              ],
+            };
+
+            // create a new blob from geojson featurecollection
+            const blob = new Blob([JSON.stringify(geojson)], {
+              type: 'application/json',
+            });
+
+            // URL reference to the blob
+            const url = URL.createObjectURL(blob);
+            // create new geojson layer using the blob url
+            const layer = new GeoJSONLayer({
+              url,
+            });
+            const { size, width, height, resource, roll } = bodyPolygon;
+            layer.renderer = {
+              type: 'simple',
+              symbol: {
+                type: 'polygon-3d',
+                symbolLayers: [
+                  {
+                    type: bodyPolygon.type,
+                    ...(size && { size }),
+                    ...(width && { width }),
+                    ...(height && { height }),
+                    ...(resource && { resource: { primitive: resource } }),
+                    ...(roll && { roll }),
+                    material: {
+                      color: bodyPolygon.color,
+                    },
+                  },
+                ],
+              },
+            };
+            layers.push(layer);
+          }
+          const map = new Map({
+            basemap: 'topo-vector',
+            // ground: "world-elevation",
+            //  center :
+
+            layers,
+          });
+
+          const view = new SceneView({
+            container: 'viewDiv',
+            map: map,
+            center: [12.4922309, 41.8902102],
+            camera: {
+              position: [12.4922309, 41.8902102, 90],
+              heading: 120,
+              tilt: 60,
+            },
+            zoom: 100,
+          });
+
+          view.popup.defaultPopupTemplateEnabled = true;
+        });
+      }
+      Gis();
     </script>
   </head>
   <body>
