@@ -4,16 +4,15 @@ import cors from 'cors';
 import connectDatabase from './mongoose/index.js';
 import BodyLineController from './api/controllers/BodyLineController.js';
 import BodyPolygonController from './api/controllers/BodyPolygonController.js';
+import route from './routes/index.js';
 dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
 connectDatabase();
+route(app);
 
-app.post('/bodyline', BodyLineController.createBodyLine);
-app.get('/bodyline', BodyLineController.getAllBodyLine);
-app.post('/bodypolygon', BodyPolygonController.createBodyPolygon);
-app.get('/bodypolygon', BodyPolygonController.getAllBodyPolygon);
+
 app.get('', (req, res) => {
   res.send('Hello');
 });

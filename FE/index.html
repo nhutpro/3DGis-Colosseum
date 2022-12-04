@@ -44,11 +44,14 @@
       async function Gis() {
         let bodyLineList;
         let bodyPolygonList;
-        const responseBodyLine = await fetch('http://localhost:5000/bodyline');
-        bodyLineList = await responseBodyLine.json();
-        const responseBodyPolygon = await fetch(
-          'http://localhost:5000/bodypolygon'
+        const fetchArray = [
+          fetch('http://localhost:5000/bodyline/all'),
+          fetch('http://localhost:5000/bodypolygon/all'),
+        ];
+        const [responseBodyLine, responseBodyPolygon] = await Promise.all(
+          fetchArray
         );
+        bodyLineList = await responseBodyLine.json();
         bodyPolygonList = await responseBodyPolygon.json();
 
         require([
@@ -1800,7 +1803,7 @@
                   width: 2.2,
                   roll: 180,
                   resource: { primitive: 'cone' },
-                  height: 3,
+                  // height: 3,
                   size: 2,
                   material: {
                     color: '#DEC17F',
@@ -1915,7 +1918,7 @@
                   type: 'Feature',
                   properties: {
                     name: bodyLine.nameInfo,
-                    height: bodyLine.bodyHeight,
+                    height: bodyLine.heightInfo,
                   },
                   geometry: {
                     type: 'LineString',
@@ -1945,8 +1948,8 @@
                 symbolLayers: [
                   {
                     type: 'path',
-                    width: bodyLine.bodyWidth,
-                    height: bodyLine.bodyHeight,
+                    width: bodyLine.width,
+                    height: bodyLine.height,
                     profile: 'quad',
                     material: {
                       color: bodyLine.color,
@@ -1965,7 +1968,7 @@
                 {
                   type: 'Feature',
                   properties: {
-                    'Building name': bodyPolygon.nameInfo,
+                    name: bodyPolygon.nameInfo,
                     height: bodyPolygon.heightInfo,
                   },
                   geometry: {
@@ -1988,7 +1991,7 @@
             const layer = new GeoJSONLayer({
               url,
             });
-            const { bodyWidth, resource, roll } = bodyPolygon;
+            const { size, width, height, resource, roll } = bodyPolygon;
             layer.renderer = {
               type: 'simple',
               symbol: {
@@ -1996,7 +1999,11 @@
                 symbolLayers: [
                   {
                     type: bodyPolygon.type,
-                    size: bodyPolygon.size,
+                    ...(size && { size }),
+                    ...(width && { width }),
+                    ...(height && { height }),
+                    ...(resource && { resource: { primitive: resource } }),
+                    ...(roll && { roll }),
                     material: {
                       color: bodyPolygon.color,
                     },

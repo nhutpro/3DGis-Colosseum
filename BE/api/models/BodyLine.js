@@ -4,8 +4,8 @@ const BodyLine = new Schema(
     nameInfo: String,
     heightInfo: String,
     color: String,
-    bodyHeight: Number,
-    bodyWidth: Number,
+    height: { type: Number, default: null },
+    width: Number,
     face: { type: Schema.Types.ObjectId, ref: 'Face' },
   },
   { collection: 'BodyLine' }
