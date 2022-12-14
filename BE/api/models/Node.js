@@ -1,9 +1,9 @@
 import { Schema, model } from 'mongoose';
 const Node = new Schema(
   {
-    x: String,
-    y: String,
-    z: String,
+    x: Number,
+    y: Number,
+    z: Number,
   },
   { collection: 'Node' }
 );
